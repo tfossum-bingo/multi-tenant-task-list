@@ -28,6 +28,8 @@ This product is a multi-tenant to-do list, where users of different organization
 ***
 
 ### Wireframes
+![Welcome Page](/wf_Welcome.png)
+![Main Page](/wf_MainPage.png)
 ***
 
 ### Trello Board
@@ -36,10 +38,11 @@ This product is a multi-tenant to-do list, where users of different organization
 
 ### To Do List
  - [ ] Create project skeleton
- - [ ] User can login to site
+ - [ ] User can login/logout
  - [ ] User can view tasks related to them
  - [ ] User can CRUD tasks
  - [ ] User can view stats regarding their related tasks
+ - [ ] User can administer their account
 
 
 
