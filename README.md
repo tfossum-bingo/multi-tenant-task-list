@@ -31,7 +31,7 @@ This product is a multi-tenant to-do list, where users of different organization
 ***
 
 ### Trello Board
-[Trello](https://trello.com/b/9DC9kJnL/multi-tenant-task-list)
+[Go here for the project Trello board](https://trello.com/b/9DC9kJnL/multi-tenant-task-list)
 ***
 
 ### To Do List
