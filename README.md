@@ -35,11 +35,11 @@ This product is a multi-tenant to-do list, where users of different organization
 ***
 
 ### To Do List
- -[ ] Create project skeleton
- -[ ] User can login to site
- -[ ] User can view tasks related to them
- -[ ] User can CRUD tasks
- -[ ] User can view stats regarding their related tasks
+ - [ ] Create project skeleton
+ - [ ] User can login to site
+ - [ ] User can view tasks related to them
+ - [ ] User can CRUD tasks
+ - [ ] User can view stats regarding their related tasks
 
 
 
