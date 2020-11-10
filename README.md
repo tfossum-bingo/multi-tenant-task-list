@@ -30,6 +30,7 @@ This product is a multi-tenant to-do list, where users of different organization
 ### Wireframes
 ![Welcome Page](/wf_Welcome.png)
 ![Main Page](/wf_MainPage.png)
+![Task Details](/wf_Task_Details.png)
 ***
 
 ### Trello Board
