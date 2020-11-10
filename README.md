@@ -25,4 +25,23 @@ This product is a multi-tenant to-do list, where users of different organization
 ***
 ### Component Diagram
 ![Component Diagram](/Component_Diagram.png)
+***
+
+### Wireframes
+***
+
+### Trello Board
+[Trello](https://trello.com/b/9DC9kJnL/multi-tenant-task-list)
+***
+
+### To Do List
+ -[ ] Create project skeleton
+ -[ ] User can login to site
+ -[ ] User can view tasks related to them
+ -[ ] User can CRUD tasks
+ -[ ] User can view stats regarding their related tasks
+
+
+
+
 
