@@ -1,23 +1,22 @@
+const AppRouter = require('./routes/AppRouter')
 const express = require('express')
-
 const logger = require('morgan')
-
-const appRoutes = require('./routes/AppRouter')
-
-const db = require('./db/connection')
-
+const cors = require('cors')
 const bodyParser = require('body-parser')
-const { port } = require('../../hw/custom_api_hw/db/connection')
+// const helmet = require('helmet')
+const db = require('./db/connection')
+const { port } = require('./db/connection')
 
 const PORT = process.env.PORT || 3001
-
 const app = express()
 
-app.use(bodyParser.json())
-
 app.use(logger('dev'))
+// app.use(helmet())
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use('/api', appRoutes)
+app.use('/api', AppRouter)
 
 db.on('error', console.error.bind(console, 'MongoDB connection error: '))
 
