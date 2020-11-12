@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage'
+import ListPage from '../pages/ListPage'
 
 
 class Router extends Component {
@@ -27,6 +28,7 @@ class Router extends Component {
                       <Route exact path="/" component={() => (
                           <LandingPage></LandingPage>
                       )}/>
+                      <Route path="/list" component={() => (<ListPage />)}/>
                   </Switch>
                   )}
           </main>
