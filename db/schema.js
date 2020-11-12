@@ -1,15 +1,16 @@
 const { model } = require('mongoose')
-// const AircraftSchema = require('./models/aircraft')
-// const DesignerSchema = require('./models/manufacturer')
-// const ManufacturerSchema = require('./models/manufacturer')
 
-// const Aircraft = model('aircraft', AircraftSchema)
-// const Designer = model('designer', DesignerSchema)
-// const Manufacturer = model('manufacturer', ManufacturerSchema)
+const OrganizationSchema = require('./models/organization')
+const TaskSchema = require('./models/task')
+const UserSchema = require('./models/user')
+
+const Organization = model('organization', OrganizationSchema)
+const Task = model('task', TaskSchema)
+const User = model('user', UserSchema)
 
 
 module.exports = {
-    // Aircraft,
-    // Designer,
-    // Manufacturer
+    Organization,
+    Task,
+    User
 }

@@ -1,13 +1,13 @@
 const Router = require('express').Router()
 
-// const DesignerRouter = require('./DesignerRouter')
-// const OrganizationRouter = require('./OrganizationRouter')
-// const AircraftRouter = require('./AircraftRouter')
+const OrganizationRouter = require('./OrganizationRouter')
+const TaskRouter = require('./TaskRouter')
+const UserRouter = require('./UserRouter')
 
 Router.get('/', (req, res) => res.send('This is root!*'))
 
-// Router.use('/manufacturers', ManufacturerRouter)
-// Router.use('/designers', DesignerRouter)
-// Router.use('/aircrafts', AircraftRouter)
+Router.use('/organizations', OrganizationRouter)
+Router.use('/tasks', TaskRouter)
+Router.use('/users', UserRouter)
 
 module.exports = Router
