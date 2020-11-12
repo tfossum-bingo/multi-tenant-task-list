@@ -29,20 +29,6 @@ const getUser = async (request, response) => {
 
 const getUserTasks = async (request, response) => {
     console.log('HIT getUserTasks', request.params.id)
-    // try {
-    //     await Task.find(
-    //         {
-    //             $or: [{ creator_id: request.params.id },
-    //             { assignee_id: request.params.id }]
-    //         }, (err, tasks) => {
-    //             if (!err) {
-    //                 return response.status(200).json({ tasks: tasks })
-    //             }
-    //             return response.status(404).send('No tasks found for a user with that ID.')
-    //         })
-    // } catch (error) {
-    //     return response.status(500).send(error.message)
-    // }
 
     try {
         // const tasks = await Task.find({ $or: [{ creator_id: request.params.id }, { assignee_id: request.params.id }] })
