@@ -1,4 +1,9 @@
+const { response } = require('express')
 const { Task, User } = require('../db/schema')
+const {
+    checkPassword,
+    generatePassword
+} = require('../middleware/PasswordHandler')
 
 const getUsers = async (req, res) => {
     console.log("HIT getUsers")
@@ -46,7 +51,7 @@ const getUserTasks = async (request, response) => {
 
     try {
         // const tasks = await Task.find({ $or: [{ creator_id: request.params.id }, { assignee_id: request.params.id }] })
-        const tasks = await Task.find({ $or: [{creator_id: request.params.id}, {assignee_id: request.params.id}] })
+        const tasks = await Task.find({ $or: [{ creator_id: request.params.id }, { assignee_id: request.params.id }] })
         if (tasks) {
             return response.status(200).json({ tasks: tasks })
         }
@@ -56,12 +61,18 @@ const getUserTasks = async (request, response) => {
     }
 }
 
-const createUser = async (req, res) => {
+const createUser = async (request, response) => {
     console.log("HIT createUser")
+    const body = request.body
+    const password_digest = await generatePassword(body.password)
     try {
-        const user = await new User(req.body)
+        const user = await new User({
+            name: body.name,
+            email: body.email,
+            password_digest
+        })
         await user.save()
-        return res.status(201).json(user,)
+        return response.status(201).json(user,)
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
@@ -100,11 +111,32 @@ const deleteUser = async (request, response) => {
     }
 }
 
+const signInUser = async (request, response, next) => {
+    const user = await User.findOne({ email: request.body.email })
+
+    if (user && (await checkPassword(request.body.password, user.password_digest))) {
+        const payload = {
+            _id: user._id,
+            name: user.name
+        }
+        response.locals.payload = payload
+        return next()
+    }
+    response.status(401).send({ msg: 'Unauthorized' })
+}
+
+const refreshSession = (request, response) => {
+    const token = response.locals.token
+    response.send(token)
+}
+
 module.exports = {
     getUsers,
     getUser,
     getUserTasks,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    signInUser,
+    refreshSession
 }

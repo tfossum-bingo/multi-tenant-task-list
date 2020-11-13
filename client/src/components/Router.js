@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage'
 import ListPage from '../pages/ListPage'
+import { __CheckSession } from '../services/UserService'
 
 
 class Router extends Component {
@@ -14,6 +15,18 @@ class Router extends Component {
 
   componentDidMount() {
     this.setState({ pageLoading: false })
+    this.checkLoggedIn()
+  }
+
+  async checkLoggedIn () {
+    const token = localStorage.getItem("token")
+    if(token){
+      const session = await __CheckSession()
+      console.log("My session: ", session)
+      if(session){
+        this.props.history.push('/list')
+      }
+    }
   }
 
   render() {
@@ -35,4 +48,4 @@ class Router extends Component {
       )
   }
 }
-export default Router
+export default withRouter(Router)

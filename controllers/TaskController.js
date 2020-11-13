@@ -66,7 +66,7 @@ const deleteTask = async (request, response) => {
     console.log('HIT deleteTask')
     try {
         const { id } = request.params
-        const deleted = await User.findByIdAndDelete(id)
+        const deleted = await Task.findByIdAndDelete(id)
         if (deleted) {
             return response.status(200).send('Task deleted')
         }
