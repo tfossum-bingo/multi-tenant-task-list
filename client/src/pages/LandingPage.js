@@ -32,7 +32,6 @@ export default class SignIn extends Component {
     const { email, password } = this.state
     return (
       <div>
-
         <form onSubmit={this.handleSubmit}>
           <TextInput
             placeholder="Email"
@@ -54,6 +53,4 @@ export default class SignIn extends Component {
       </div>
     )
   }
-
-
 }

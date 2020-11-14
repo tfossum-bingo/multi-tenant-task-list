@@ -19,6 +19,7 @@ class Router extends Component {
     this.checkLoggedIn()
   }
 
+
   async checkLoggedIn() {
     const token = localStorage.getItem("token")
     if (token) {

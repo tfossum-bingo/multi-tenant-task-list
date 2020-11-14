@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import Logout from '../components/LogOut'
+import CreateTaskButton from '../components/CreateTaskButton'
 import Task from '../components/Task'
+import TaskForm from '../components/TaskForm'
 import '../styles/Task.css'
 import { __GetTasks } from '../services/TaskService'
 
@@ -47,6 +49,12 @@ export default class ViewTasks extends Component {
                     </div>
                     <div>
                         User ID: {`${this.state.user}`}
+                    </div>
+                    {/* <div>
+                        <CreateTaskButton/>
+                    </div> */}
+                    <div>
+                        <TaskForm/>
                     </div>
                     <div className="tasks-container">
                         ListPage
