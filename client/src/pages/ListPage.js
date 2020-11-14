@@ -1,18 +1,27 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
+import Logout from '../components/LogOut'
 import Task from '../components/Task'
 import '../styles/Task.css'
 import { __GetTasks } from '../services/TaskService'
 
 export default class ViewTasks extends Component {
-    constructor() {
+    constructor(props) {
         super()
+        console.log("VT Props: ", props)
         this.state = {
-            tasks: null
+            tasks: null,
+            user: null
         }
     }
 
     componentDidMount() {
+        const localStorabeUserID = localStorage.getItem("userId")
+        if(localStorabeUserID){
+            this.setState({user: localStorabeUserID})
+        }else{
+            this.setState({user: this.props.user._id})
+        }
         this.getTasks()
     }
 
@@ -20,24 +29,34 @@ export default class ViewTasks extends Component {
         
             //   const tasks = await __GetUserTasks(this.props.user_id)
             console.log('HIT getTasks')
-            const tasks = await __GetTasks()
+            const foo = localStorage.getItem("userId")
+            console.log('localStorage userId: ', foo)
+            const tasks = await __GetTasks(foo)
             this.setState({ tasks: tasks })
             console.log('Tasks Received: ', this.state.tasks)
-
     }
 
     render() {
         const { tasks } = this.state
-        if (tasks!== null ) {
+        console.log('ListPage User: ', this.state.user)
+        if (tasks !== null) {
             return (
-                <div class="tasks-container">
-                    ListPage
-                    {tasks.map((task) => {
+                <div>
+                    <div>
+                        <Logout></Logout>
+                    </div>
+                    <div>
+                        User ID: {`${this.state.user}`}
+                    </div>
+                    <div className="tasks-container">
+                        ListPage
+                    {tasks.map((task, index) => {
                         return (
-                            <Task task={task}></Task>
+                            <Task task={task} key={task._id}></Task>
                         )
                     })
-                    }
+                        }
+                    </div>
                 </div>
             )
         }

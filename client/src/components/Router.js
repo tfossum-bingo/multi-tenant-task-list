@@ -9,7 +9,8 @@ class Router extends Component {
   constructor() {
     super()
     this.state = {
-      pageLoading: true
+      pageLoading: true,
+      user: null
     }
   }
 
@@ -18,34 +19,48 @@ class Router extends Component {
     this.checkLoggedIn()
   }
 
-  async checkLoggedIn () {
+  async checkLoggedIn() {
     const token = localStorage.getItem("token")
-    if(token){
+    if (token) {
       const session = await __CheckSession()
       console.log("My session: ", session)
-      if(session){
+      if (session) {
         this.props.history.push('/list')
       }
     }
   }
 
+  toggleAuthenticated = (value, user, done) => {
+    console.log("HIT toggleAuthenticated")
+    console.log("TA User: ", user)
+    this.setState({
+      authenticated: value,
+      user: user
+    }, () => done())
+    console.log("State after Auth: ", this.state)
+  }
+
   render() {
-      return (
-          <main>
-              {this.state.pageLoading ? (
-                  <div>
-                      <h3>Loading...</h3>
-                  </div>
-              ) : (
-                  <Switch>
-                      <Route exact path="/" component={() => (
-                          <LandingPage></LandingPage>
-                      )}/>
-                      <Route path="/list" component={() => (<ListPage />)}/>
-                  </Switch>
-                  )}
-          </main>
-      )
+    return (
+      <main>
+        {this.state.pageLoading ? (
+          <div>
+            <h3>Loading...</h3>
+          </div>
+        ) : (
+            <Switch>
+              <Route exact path="/" component={(props) => (
+                <LandingPage toggleAuthenticated={this.toggleAuthenticated}
+                  {...props}>
+                </LandingPage>
+              )} />
+              <Route path="/list" component={() => (
+                <ListPage user={this.state.user} />
+              )} />
+            </Switch>
+          )}
+      </main>
+    )
   }
 }
 export default withRouter(Router)

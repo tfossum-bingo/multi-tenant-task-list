@@ -20,9 +20,8 @@ export default class SignIn extends Component {
     event.preventDefault()
     try {
       const loginData = await __LoginUser(this.state)
-      console.log(loginData)
+      console.log('loginData: ', loginData.user)
       this.props.toggleAuthenticated(true, loginData.user, () => this.props.history.push('/list')
-
       )
     }catch (error) {
       this.setState({formError: true})
@@ -33,6 +32,7 @@ export default class SignIn extends Component {
     const { email, password } = this.state
     return (
       <div>
+
         <form onSubmit={this.handleSubmit}>
           <TextInput
             placeholder="Email"
