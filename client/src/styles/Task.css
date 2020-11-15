@@ -2,11 +2,19 @@ body {
     margin: 0 auto;
     padding: 5px;
   }
+.header {
+    position: -webkit-sticky;
+    position: sticky;
+    height: 100px;
+    top: 0;
+    background-color: white;
+}
 
 .tasks-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
     background-color: lightgreen;
 }
 

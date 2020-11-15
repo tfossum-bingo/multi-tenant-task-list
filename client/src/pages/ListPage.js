@@ -52,27 +52,30 @@ export default class ViewTasks extends Component {
         if (tasks !== null) {
             return (
                 <div>
-                    <div>
-                        <Logout></Logout>
-                    </div>
-                    <div>
-                        User ID: {`${this.state.user}`}
-                    </div>
-                    {/* <div>
+                    <div className="header">
+
+                        <div>
+                            <Logout></Logout>
+                        </div>
+                        <div>
+                            User ID: {`${this.state.user}`}
+                        </div>
+                        {/* <div>
                         <CreateTaskButton/>
                     </div> */}
-                    {/* <div>
+                        {/* <div>
                         <TaskForm {...this.props} />
                     </div> */}
-                    <div>
+                        {/* <div>
                         <Modal show={this.state.displayModal} onClick={this.toggleModal}  >
                             Edit this Task
                             <TaskForm />
                         </Modal>
+                    </div> */}
+                        <button onClick={e => this.toggleModal()} >
+                            Create Task
+                        </button>
                     </div>
-                    <button onClick={e=> this.toggleModal()} >
-                        Create Task
-                    </button>
                     <div className="tasks-container">
                         ListPage
                     {tasks.map((task, index) => {
