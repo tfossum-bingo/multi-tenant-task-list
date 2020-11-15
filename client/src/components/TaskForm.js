@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/index.css'
 import TextInput from './TextInput'
-import { __CreateTask, __UpdateTask } from '../services/TaskService'
+import { __CreateTask, __DeleteTask, __UpdateTask } from '../services/TaskService'
 
 export default class TaskForm extends Component {
     constructor(props) {
@@ -51,6 +51,17 @@ export default class TaskForm extends Component {
             console.log(error)
         }
     }
+
+    handleDelete = async (e) => {
+        e.preventDefault()
+        try {
+            await __DeleteTask(this.state._id)
+            this.props.history.push('/list')
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
 
     componentDidMount() {
         this.setStateFromProps(this.props)
@@ -134,6 +145,7 @@ export default class TaskForm extends Component {
                     </div>
                     {this.state._id == '' ? this.createButton() : this.saveButton()}
                 </form>
+                <button onClick={this.handleDelete}  >Delete</button> 
             </div>
         )
     }

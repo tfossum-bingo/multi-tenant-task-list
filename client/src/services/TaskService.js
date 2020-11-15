@@ -29,3 +29,12 @@ export const __UpdateTask = async (_id, formData) => {
     throw error
   }
 }
+
+export const __DeleteTask = async (_id) => {
+  try {
+    const res = await ApiClient.delete(`/tasks/${_id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

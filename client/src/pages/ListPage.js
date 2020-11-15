@@ -60,18 +60,6 @@ export default class ViewTasks extends Component {
                         <div>
                             User ID: {`${this.state.user}`}
                         </div>
-                        {/* <div>
-                        <CreateTaskButton/>
-                    </div> */}
-                        {/* <div>
-                        <TaskForm {...this.props} />
-                    </div> */}
-                        {/* <div>
-                        <Modal show={this.state.displayModal} onClick={this.toggleModal}  >
-                            Edit this Task
-                            <TaskForm />
-                        </Modal>
-                    </div> */}
                         <button onClick={e => this.toggleModal()} >
                             Create Task
                         </button>
