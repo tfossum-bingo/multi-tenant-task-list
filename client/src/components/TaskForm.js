@@ -8,12 +8,12 @@ export default class TaskForm extends Component {
         super()
         console.log("TaskForm Props: ", props)
         this.state = {
-            summary: null,
-            description: null,
-            status: null,
-            priority: null,
-            assignee_id: null,
-            creator_id: null
+            summary: '',
+            description: '',
+            status: '',
+            priority: '',
+            assignee_id: '',
+            creator_id: ''
         }
     }
 
@@ -86,14 +86,14 @@ export default class TaskForm extends Component {
                     />
                     <TextInput
                         placeholder="Assignee"
-                        name="assignee"
+                        name="assignee_id"
                         type="text"
                         value={assignee_id}
                         onChange={this.handleChange}
                     />
                     <TextInput
                         placeholder="Creator"
-                        name="creator"
+                        name="creator_id"
                         type="text"
                         value={creator_id}
                         onChange={this.handleChange}

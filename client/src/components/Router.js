@@ -55,8 +55,8 @@ class Router extends Component {
                   {...props}>
                 </LandingPage>
               )} />
-              <Route path="/list" component={() => (
-                <ListPage user={this.state.user} />
+              <Route path="/list" component={(props) => (
+                <ListPage user={this.state.user} {...props} />
               )} />
             </Switch>
           )}

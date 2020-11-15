@@ -54,7 +54,7 @@ export default class ViewTasks extends Component {
                         <CreateTaskButton/>
                     </div> */}
                     <div>
-                        <TaskForm/>
+                        <TaskForm {...this.props}/>
                     </div>
                     <div className="tasks-container">
                         ListPage
