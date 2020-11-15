@@ -40,9 +40,11 @@ export default class ViewTasks extends Component {
         console.log('Tasks Received: ', this.state.tasks)
     }
 
-    showModal() {
-        this.setState({ displayModal: true })
+    toggleModal = (e) => {
+        console.log("Edit Task modal")
+        this.setState({ displayModal: !this.state.displayModal })
     }
+
 
     render() {
         const { tasks } = this.state
@@ -59,17 +61,17 @@ export default class ViewTasks extends Component {
                     {/* <div>
                         <CreateTaskButton/>
                     </div> */}
-                    <div>
+                    {/* <div>
                         <TaskForm {...this.props} />
-                    </div>
+                    </div> */}
                     <div>
-                        <Modal show={this.state.displayModal}>
+                        <Modal show={this.state.displayModal} onClick={this.toggleModal}  >
                             Edit this Task
                             <TaskForm />
                         </Modal>
                     </div>
-                    <button onClick={e=> this.showModal()} >
-                        Show Modal
+                    <button onClick={e=> this.toggleModal()} >
+                        Create Task
                     </button>
                     <div className="tasks-container">
                         ListPage
