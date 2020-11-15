@@ -10,9 +10,14 @@ export default class Task extends Component {
         }
     }
 
-    showModal() {
+    modalButtonText() {
+        const buttonTxt = this.state.displayModal == true ? "Close" : "Edit" 
+        return buttonTxt
+    }
+
+    toggleModal = (e) => {
         console.log("Edit Task modal")
-        this.setState({ displayModal: true })
+        this.setState({ displayModal: !this.state.displayModal })
     }
 
     render() {
@@ -24,11 +29,12 @@ export default class Task extends Component {
                     <p>{task.summary}</p>
                     <p>{task.description}</p>
                 </div>
-                <Modal show={this.state.displayModal}>
+                <Modal show={this.state.displayModal} onClick={this.toggleModal} >
                     Edit this Task
                     <TaskForm task={task} {...this.props} />
                 </Modal>
-                <button onClick={e => this.showModal()}>Edit</button>
+                
+        <button onClick={e => this.toggleModal()}>{this.modalButtonText()}</button>
             </div>
         )
     }

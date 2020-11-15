@@ -75,7 +75,7 @@ export default class ViewTasks extends Component {
                         ListPage
                     {tasks.map((task, index) => {
                         return (
-                            <Task task={task} key={task._id}></Task>
+                            <Task task={task} key={task._id} {...this.props}></Task>
                         )
                     })
                         }
