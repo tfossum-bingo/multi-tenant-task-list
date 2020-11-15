@@ -20,3 +20,12 @@ export const __CreateTask = async (formData) => {
     throw error
   }
 }
+
+export const __UpdateTask = async (_id, formData) => {
+  try {
+    const res = await ApiClient.put(`/tasks/${_id}`, formData)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

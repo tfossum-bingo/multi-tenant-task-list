@@ -4,7 +4,6 @@ import LandingPage from '../pages/LandingPage'
 import ListPage from '../pages/ListPage'
 import { __CheckSession } from '../services/UserService'
 
-
 class Router extends Component {
   constructor() {
     super()
@@ -18,7 +17,6 @@ class Router extends Component {
     this.setState({ pageLoading: false })
     this.checkLoggedIn()
   }
-
 
   async checkLoggedIn() {
     const token = localStorage.getItem("token")
