@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import Logout from '../components/LogOut'
-// import CreateTaskButton from '../components/CreateTaskButton'
-import Task from '../components/Task'
 import TaskForm from '../components/TaskForm'
 import Modal from '../components/modals/Modal'
 import TaskList from '../components/TaskList'
-import '../styles/Task.css'
 import { __GetTasks } from '../services/TaskService'
 import { __GetProfile } from '../services/UserService'
 import { __GetUsers } from '../services/OrganizationService'
 
+import '../styles/App.css'
+import '../styles/TaskPage.css'
+import '../styles/Task.css'
 export default class ViewTasks extends Component {
     constructor(props) {
         super()
@@ -46,7 +45,7 @@ export default class ViewTasks extends Component {
     }
 
     findAssignedTasks = (tasks) => {
-        
+
         const assignedTasks = tasks.filter(task => task.assignee_id._id === this.state.user._id)
         return assignedTasks
     }
@@ -85,8 +84,11 @@ export default class ViewTasks extends Component {
         console.log('ListPage User: ', this.state.user)
         if (assignedTasks !== null || createdTasks !== null) {
             return (
-                <div>
+                <div className="task-page">
                     <div className="header">
+                        <div>
+                            <h1>Traxer</h1>
+                        </div>
                         <h4>{this.state.user.name}</h4>
                         <div>
                             <Logout></Logout>
@@ -94,28 +96,30 @@ export default class ViewTasks extends Component {
                         <div>
                             User ID: {`${this.state.user._id}`}
                         </div>
+                    </div>
+                    <div className="create-task">
                         <button onClick={e => this.toggleModal()} >
                             New Task
                         </button>
-                    </div>
-                    <div>
                         <Modal show={this.state.displayModal}
                             onClick={this.toggleModal}>
-                            <TaskForm selectOptions={this.state.orgUsers} creator_id={this.state.user._id} {...this.props} />
+                            <TaskForm
+                                onClick={this.toggleModal}
+                                selectOptions={this.state.orgUsers}
+                                creator_id={this.state.user._id}
+                                {...this.props} />
                         </Modal>
                     </div>
-                    <div className="tasks-container">
-                        Assigned Tasks
+                    <div className='task-lists-container flex-row'>
                         <TaskList
                             tasks={assignedTasks}
+                            sectionTitle='Assigned to Me'
                             orgUsers={this.state.orgUsers}
                             {...this.props}
                         />
-                    </div>
-                    <div className="tasks-container">
-                        Created for Others
                         <TaskList
                             tasks={createdTasks}
+                            sectionTitle='Created for Others'
                             orgUsers={this.state.orgUsers}
                             {...this.props}
                         />

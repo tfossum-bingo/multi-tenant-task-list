@@ -12,11 +12,35 @@
 .modal {
     margin: 0 auto;
     background-color: lightcoral;
+    background-color:rgba(63, 59, 59, 0.95);
     align-items: center;
     margin: 15% auto;
     padding: 20px;
-    width: 50%;
+    width: 400px;
+    border-radius: 7px;
+    border: white solid 3px;
     /* position: fixed; */
     /* top: 100px; */
     /* width: 50%; */
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.modal-close-button {
+    font-size: .8em;
+    background-color: darkred;
+}
+
+.modal-close-button:hover {
+    background-color: red;
 }

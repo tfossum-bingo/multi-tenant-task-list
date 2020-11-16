@@ -15,8 +15,6 @@ export default class Modal extends React.Component {
             <div className='modal-layer'>
                 <div className="modal">
                     {this.props.children}
-
-                    <button onClick={this.props.onClick}>Close*</button>
                 </div>
             </div>
         )

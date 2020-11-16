@@ -1,8 +1,10 @@
 import React from 'react'
+import '../styles/TaskPage.css'
 
 export default (props) =>
   props.fieldType === 'textfield' ? (
     <textarea
+      className="task-entry"
       type={props.type}
       name={props.name}
       value={props.value}
@@ -10,12 +12,13 @@ export default (props) =>
       placeholder={props.placeholder}
     />
   ) : (
-    <input
-      type={props.type}
-      name={props.name}
-      value={props.value}
-      onChange={props.onChange}
-      placeholder={props.placeholder}
-      autoComplete="false"
-    />
-  )
+      <input
+        className="task-entry"
+        type={props.type}
+        name={props.name}
+        value={props.value}
+        onChange={props.onChange}
+        placeholder={props.placeholder}
+        autoComplete="false"
+      />
+    )

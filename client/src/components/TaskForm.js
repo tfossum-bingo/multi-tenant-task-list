@@ -9,7 +9,7 @@ export default class TaskForm extends Component {
     constructor(props) {
         super()
         console.log("TaskForm Props: ", props)
-        
+
         this.state = {
             _id: '',
             summary: '',
@@ -19,8 +19,8 @@ export default class TaskForm extends Component {
             assignee_id: '',
             creator_id: '',
             orgUsers: [],
-            priorities: [['Low','Low'], ['Medium','Medium'], ['High','High']],
-            statuses: [['Open','Open'], ['Closed','Closed'], ['In Progress','In Progress']]
+            priorities: [['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']],
+            statuses: [['Open', 'Open'], ['Closed', 'Closed'], ['In Progress', 'In Progress']]
         }
     }
 
@@ -100,7 +100,7 @@ export default class TaskForm extends Component {
         } else {
             console.log("Assignee is empty")
             const tempAssigneeId = props.selectOptions[0][0]
-            this.setState({assignee_id: tempAssigneeId, status: 'Open', priority: 'Medium'})
+            this.setState({ assignee_id: tempAssigneeId, status: 'Open', priority: 'Medium' })
             console.log("Assignee is now: ", this.state.assignee_id)
         }
     }
@@ -108,9 +108,21 @@ export default class TaskForm extends Component {
     render() {
         const { summary, description, status, priority, assignee_id, creator_id } = this.state
         return (
-            <div className="flex-column modal">
-                <form onSubmit={this.handleSubmit}>
-                    <div>
+            <div>
+                <div className='modal-header'>
+                    <div className='modal-title'>
+                    </div>
+                    <div className='model-close'>
+                        <button
+                            className='modal-close-button'
+                            onClick={this.props.onClick}>
+                            X
+                        </button>
+                    </div>
+                </div>
+                <div className="flex-column">
+                    <form onSubmit={this.handleSubmit}>
+
                         <TextInput
                             placeholder="Summary"
                             name="summary"
@@ -118,8 +130,6 @@ export default class TaskForm extends Component {
                             type="text"
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div>
                         <TextInput
                             placeholder="Description"
                             name="description"
@@ -127,41 +137,41 @@ export default class TaskForm extends Component {
                             type="text"
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div>
                         <SelectOption
                             selectOptions={this.state.statuses}
                             name="status"
                             value={status}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div>
                         <SelectOption
                             selectOptions={this.state.priorities}
                             name="priority"
                             value={priority}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div>
                         <SelectOption
                             selectOptions={this.props.selectOptions}
                             name="assignee_id"
                             value={assignee_id}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div>
                         <input
                             name="creator_id"
                             type="hidden"
                             value={creator_id}
                         />
+
+                        {this.state._id === '' ? this.createButton() : this.saveButton()}
+                    </form>
+                    <div className="modal-footer">
+                        <button
+                            className='delete-button'
+                            onClick={this.handleDelete}>
+                            Delete
+                    </button>
                     </div>
-                    {this.state._id == '' ? this.createButton() : this.saveButton()}
-                </form>
-                <button onClick={this.handleDelete}>Delete</button>
+
+                </div>
             </div>
         )
     }

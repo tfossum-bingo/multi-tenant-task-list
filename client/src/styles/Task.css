@@ -2,13 +2,6 @@ body {
     margin: 0 auto;
     padding: 5px;
   }
-.header {
-    position: -webkit-sticky;
-    position: sticky;
-    height: 100px;
-    top: 0;
-    background-color: white;
-}
 
 .tasks-container {
     display: flex;
@@ -24,5 +17,5 @@ body {
     margin-top: 10px; 
     padding: 5px;
     width: 400px;
-    background-color: lightskyblue;
+    
 }

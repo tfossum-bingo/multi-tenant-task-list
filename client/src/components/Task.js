@@ -11,7 +11,7 @@ export default class Task extends Component {
     }
 
     modalButtonText() {
-        const buttonTxt = this.state.displayModal == true ? "Close" : "Edit" 
+        const buttonTxt = this.state.displayModal == true ? "Close" : "Edit"
         return buttonTxt
     }
 
@@ -22,7 +22,7 @@ export default class Task extends Component {
 
     render() {
         const { task, orgUsers } = this.props
-        const {description, summary, status, priority, assignee_id} = task
+        const { description, summary, status, priority, assignee_id } = task
         return (
             <div className="task-card">
                 <div>
@@ -33,12 +33,16 @@ export default class Task extends Component {
                     <p>{priority}</p>
                     <p>{assignee_id.name}</p>
                 </div>
-                <Modal show={this.state.displayModal} onClick={this.toggleModal} >
-                    Edit this Task
-                    <TaskForm task={task} {...this.props} orgUsers={orgUsers}  />
+                <Modal show={this.state.displayModal}>
+                    <TaskForm
+                        task={task}
+                        orgUsers={orgUsers}
+                        onClick={this.toggleModal}
+                        {...this.props}
+                    />
                 </Modal>
-                
-        <button onClick={e => this.toggleModal()}>{this.modalButtonText()}</button>
+                <button onClick={e => this.toggleModal()}>{this.modalButtonText()}</button>
+
             </div>
         )
     }

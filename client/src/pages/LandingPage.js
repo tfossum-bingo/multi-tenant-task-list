@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import TextInput from '../components/TextInput'
 import { __LoginUser } from '../services/UserService'
+import '../styles/App.css'
 import '../styles/LandingPage.css'
 
 export default class SignIn extends Component {

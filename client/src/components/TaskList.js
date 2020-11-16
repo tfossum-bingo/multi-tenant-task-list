@@ -6,6 +6,7 @@ export default (props) => {
     if (props.tasks.length > 0) {
         return (
             <div className="tasks-container">
+                <h4>{props.sectionTitle}</h4>
                 {props.tasks.map((task, index) => {
                     return (
                         <Task
