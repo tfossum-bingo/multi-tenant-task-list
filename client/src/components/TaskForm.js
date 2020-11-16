@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../styles/index.css'
+import SelectOption from './SelectOption'
 import TextInput from './TextInput'
+
 import { __CreateTask, __DeleteTask, __UpdateTask } from '../services/TaskService'
 
 export default class TaskForm extends Component {
@@ -14,9 +16,9 @@ export default class TaskForm extends Component {
             status: '',
             priority: '',
             assignee_id: '',
-            creator_id: ''
+            creator_id: '',
+            orgUsers: []
         }
-
     }
 
     createButton() {
@@ -62,12 +64,8 @@ export default class TaskForm extends Component {
         }
     }
 
-
     componentDidMount() {
         this.setStateFromProps(this.props)
-    }
-
-    getOrganizationUsers = async () => {
     }
 
     saveButton() {
@@ -126,10 +124,9 @@ export default class TaskForm extends Component {
                         />
                     </div>
                     <div>
-                        <TextInput
-                            placeholder="Assignee"
+                        <SelectOption
+                            orgUsers={this.props.orgUsers}
                             name="assignee_id"
-                            type="text"
                             value={assignee_id}
                             onChange={this.handleChange}
                         />

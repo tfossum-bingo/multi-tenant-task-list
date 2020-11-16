@@ -11,7 +11,7 @@ class Logout extends Component {
 
     logout = () => {
         localStorage.clear("token")
-        localStorage.clear("serId")
+        localStorage.clear("userId")
         this.setState({ navigate: true })
     }
 

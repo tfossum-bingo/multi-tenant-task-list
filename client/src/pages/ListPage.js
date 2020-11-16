@@ -7,6 +7,8 @@ import TaskForm from '../components/TaskForm'
 import Modal from '../components/modals/Modal'
 import '../styles/Task.css'
 import { __GetTasks } from '../services/TaskService'
+import { __GetProfile, __Profile } from '../services/UserService'
+import { __GetUsers } from '../services/OrganizationService'
 
 export default class ViewTasks extends Component {
     constructor(props) {
@@ -15,29 +17,44 @@ export default class ViewTasks extends Component {
         this.state = {
             tasks: null,
             user: null,
-            displayModal: false
+            displayModal: false,
+            orgUsers: []
         }
     }
 
     componentDidMount() {
-        const localStorabeUserID = localStorage.getItem("userId")
-        if (localStorabeUserID) {
-            this.setState({ user: localStorabeUserID })
+        const localStorUserID = localStorage.getItem("userId")
+        let userID = ''
+        if (localStorUserID) {        
+            userID = localStorUserID
         } else {
-            this.setState({ user: this.props.user._id })
+            userID = this.props.user._id
         }
+        this.getProfile(userID)
         this.getTasks()
     }
 
     getTasks = async () => {
-
-        //   const tasks = await __GetUserTasks(this.props.user_id)
         console.log('HIT getTasks')
-        const foo = localStorage.getItem("userId")
-        console.log('localStorage userId: ', foo)
-        const tasks = await __GetTasks(foo)
+        const localUserId = localStorage.getItem("userId")
+        const tasks = await __GetTasks(localUserId)
         this.setState({ tasks: tasks })
         console.log('Tasks Received: ', this.state.tasks)
+    }
+
+    getOrganizationUsers = async () => {
+        if(this.state.user){
+            console.log("getOrg: ", this.state.user.organization_id)
+            const orgUsers = await __GetUsers(this.state.user.organization_id)
+            this.setState({ orgUsers: orgUsers })
+            console.log("After Users: ", orgUsers)
+        }
+    }
+
+    getProfile = async (userId) => {
+        const fetchedProfile = await __GetProfile(userId)
+        this.setState({ user: fetchedProfile.user })
+        this.getOrganizationUsers()
     }
 
     toggleModal = (e) => {
@@ -52,12 +69,12 @@ export default class ViewTasks extends Component {
             return (
                 <div>
                     <div className="header">
-
+                        <h4>{this.state.user.name}</h4>
                         <div>
                             <Logout></Logout>
                         </div>
                         <div>
-                            User ID: {`${this.state.user}`}
+                            User ID: {`${this.state.user._id}`}
                         </div>
                         <button onClick={e => this.toggleModal()} >
                             Create Task
@@ -66,14 +83,14 @@ export default class ViewTasks extends Component {
                     <div>
                         <Modal show={this.state.displayModal}
                             onClick={this.toggleModal}>
-                                <TaskForm {...this.props} />
+                            <TaskForm orgUsers={this.state.orgUsers} {...this.props} />
                         </Modal>
                     </div>
                     <div className="tasks-container">
                         ListPage
                     {tasks.map((task, index) => {
                         return (
-                            <Task task={task} key={task._id} {...this.props}></Task>
+                            <Task orgUsers={this.state.orgUsers} task={task} key={task._id} {...this.props}></Task>
                         )
                     })
                         }

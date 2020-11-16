@@ -28,7 +28,7 @@ const getOrganizationUsers = async (request, response) => {
     console.log("HIT getOrganizationUsers")
     try {   
         //At this step I'd like to confirm the requesting user is of the requested organization, or in some way scope the request.
-        const users = await User.find({organiation_id: request.params.organiation_id})
+        const users = await User.find({organization_id: request.params.id})
         if(users){
             return response.status(200).json({users: users})
         }

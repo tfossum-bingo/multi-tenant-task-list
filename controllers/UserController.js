@@ -54,6 +54,7 @@ const createUser = async (request, response) => {
         const user = await new User({
             name: body.name,
             email: body.email,
+            organizerion_id: body.organizerion_id,
             password_digest
         })
         await user.save()

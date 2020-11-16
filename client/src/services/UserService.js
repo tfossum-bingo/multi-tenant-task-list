@@ -36,6 +36,7 @@ export const __LoginUser = async (userData) => {
     console.log(res.data)
     localStorage.setItem("token", res.data.token)
     localStorage.setItem("userId", res.data.user._id)
+    localStorage.setItem("orgId", res.data.user.organization_id)
 
     return res.data
   } catch (error) {

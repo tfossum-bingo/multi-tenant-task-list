@@ -21,7 +21,7 @@ export default class Task extends Component {
     }
 
     render() {
-        const { task } = this.props
+        const { task, orgUsers } = this.props
         // console.log('Apple: ', apple)
         return (
             <div className="task-card">
@@ -31,7 +31,7 @@ export default class Task extends Component {
                 </div>
                 <Modal show={this.state.displayModal} onClick={this.toggleModal} >
                     Edit this Task
-                    <TaskForm task={task} {...this.props} />
+                    <TaskForm task={task} {...this.props} orgUsers={orgUsers}  />
                 </Modal>
                 
         <button onClick={e => this.toggleModal()}>{this.modalButtonText()}</button>
