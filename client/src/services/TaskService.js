@@ -13,6 +13,7 @@ export const __GetTasks = async (user_id) => {
 }
 
 export const __CreateTask = async (formData) => {
+  console.log("Create Task SVC: ", formData)
   try {
     const res = await ApiClient.post('/tasks', formData)
     return res.data

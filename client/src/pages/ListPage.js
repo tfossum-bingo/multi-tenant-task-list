@@ -83,7 +83,7 @@ export default class ViewTasks extends Component {
                     <div>
                         <Modal show={this.state.displayModal}
                             onClick={this.toggleModal}>
-                            <TaskForm orgUsers={this.state.orgUsers} {...this.props} />
+                            <TaskForm orgUsers={this.state.orgUsers} creator_id={this.state.user._id} {...this.props} />
                         </Modal>
                     </div>
                     <div className="tasks-container">

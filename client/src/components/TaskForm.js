@@ -23,7 +23,7 @@ export default class TaskForm extends Component {
 
     createButton() {
         return (
-            <button>Create Taco</button>
+            <button>Create Task</button>
         )
     }
 
@@ -34,6 +34,7 @@ export default class TaskForm extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
+        console.log("Form State: ", this.props)
         const newValues = {
             summary: this.state.summary,
             description: this.state.description,
@@ -42,8 +43,12 @@ export default class TaskForm extends Component {
             assignee_id: this.state.assignee_id,
             creator_id: this.state.creator_id
         }
+        if (newValues.creator_id === "") {
+            newValues.creator_id = this.props.creator_id
+        }
+
         try {
-            if (this.state._id == '') {
+            if (this.state._id === '') {
                 await __CreateTask(newValues)
             } else {
                 await __UpdateTask(this.state._id, newValues)
@@ -59,12 +64,13 @@ export default class TaskForm extends Component {
         try {
             await __DeleteTask(this.state._id)
             this.props.history.push('/list')
-        } catch(error) {
+        } catch (error) {
             console.log(error)
         }
     }
 
     componentDidMount() {
+        console.log("TaskForm didMount")
         this.setStateFromProps(this.props)
     }
 
@@ -75,10 +81,23 @@ export default class TaskForm extends Component {
     }
 
     setStateFromProps(props) {
+        console.log("TaskForm setStateFromProps")
         if (props.task) {
             const { _id, summary, description, status, priority, assignee_id, creator_id } = props.task
-            this.setState({ _id: _id, summary: summary, description: description, status: status, priority: priority, assignee_id: assignee_id, creator_id: creator_id })
-            console.log("Loaded Task state: ", props.task)
+
+            this.setState({
+                _id: _id,
+                summary: summary,
+                description: description,
+                status: status,
+                priority: priority,
+                assignee_id: assignee_id,
+                creator_id: creator_id
+            })
+        } else {
+            console.log("Assignee is empty")
+            this.setState({assignee_id: props.orgUsers.users[0]._id})
+            console.log("Assignee is now: ", this.state.assignee_id)
         }
     }
 
@@ -132,17 +151,15 @@ export default class TaskForm extends Component {
                         />
                     </div>
                     <div>
-                        <TextInput
-                            placeholder="Creator"
+                        <input
                             name="creator_id"
-                            type="text"
+                            type="hidden"
                             value={creator_id}
-                            onChange={this.handleChange}
                         />
                     </div>
                     {this.state._id == '' ? this.createButton() : this.saveButton()}
                 </form>
-                <button onClick={this.handleDelete}  >Delete</button> 
+                <button onClick={this.handleDelete}>Delete</button>
             </div>
         )
     }
