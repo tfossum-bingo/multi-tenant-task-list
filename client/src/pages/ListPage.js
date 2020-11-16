@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import Logout from '../components/LogOut'
-import CreateTaskButton from '../components/CreateTaskButton'
+// import CreateTaskButton from '../components/CreateTaskButton'
 import Task from '../components/Task'
 import TaskForm from '../components/TaskForm'
 import Modal from '../components/modals/Modal'
+import TaskList from '../components/TaskList'
 import '../styles/Task.css'
 import { __GetTasks } from '../services/TaskService'
-import { __GetProfile, __Profile } from '../services/UserService'
+import { __GetProfile } from '../services/UserService'
 import { __GetUsers } from '../services/OrganizationService'
 
 export default class ViewTasks extends Component {
@@ -15,7 +16,8 @@ export default class ViewTasks extends Component {
         super()
         console.log("VT Props: ", props)
         this.state = {
-            tasks: null,
+            assignedTasks: null,
+            createdTasks: null,
             user: null,
             displayModal: false,
             orgUsers: []
@@ -25,7 +27,7 @@ export default class ViewTasks extends Component {
     componentDidMount() {
         const localStorUserID = localStorage.getItem("userId")
         let userID = ''
-        if (localStorUserID) {        
+        if (localStorUserID) {
             userID = localStorUserID
         } else {
             userID = this.props.user._id
@@ -38,12 +40,25 @@ export default class ViewTasks extends Component {
         console.log('HIT getTasks')
         const localUserId = localStorage.getItem("userId")
         const tasks = await __GetTasks(localUserId)
-        this.setState({ tasks: tasks })
-        console.log('Tasks Received: ', this.state.tasks)
+        const assignedTasks = this.findAssignedTasks(tasks)
+        const createdTasks = this.findCreatedTasks(tasks)
+        this.setState({ assignedTasks: assignedTasks, createdTasks: createdTasks })
+    }
+
+    findAssignedTasks = (tasks) => {
+        
+        const assignedTasks = tasks.filter(task => task.assignee_id._id === this.state.user._id)
+        return assignedTasks
+    }
+
+    findCreatedTasks = (tasks) => {
+        console.log("CreatedTasks: ", tasks)
+        const createdTasks = tasks.filter(task => (task.assignee_id._id !== this.state.user._id && task.creator_id === this.state.user._id))
+        return createdTasks
     }
 
     getOrganizationUsers = async () => {
-        if(this.state.user){
+        if (this.state.user) {
             console.log("getOrg: ", this.state.user.organization_id)
             const orgUsers = await __GetUsers(this.state.user.organization_id)
             const selectOptions = orgUsers.users.map((user, index) => {
@@ -66,9 +81,9 @@ export default class ViewTasks extends Component {
     }
 
     render() {
-        const { tasks } = this.state
+        const { assignedTasks, createdTasks } = this.state
         console.log('ListPage User: ', this.state.user)
-        if (tasks !== null) {
+        if (assignedTasks !== null || createdTasks !== null) {
             return (
                 <div>
                     <div className="header">
@@ -90,13 +105,20 @@ export default class ViewTasks extends Component {
                         </Modal>
                     </div>
                     <div className="tasks-container">
-                        ListPage
-                    {tasks.map((task, index) => {
-                        return (
-                            <Task selectOptions={this.state.orgUsers} task={task} key={task._id} {...this.props}></Task>
-                        )
-                    })
-                        }
+                        Assigned Tasks
+                        <TaskList
+                            tasks={assignedTasks}
+                            orgUsers={this.state.orgUsers}
+                            {...this.props}
+                        />
+                    </div>
+                    <div className="tasks-container">
+                        Created for Others
+                        <TaskList
+                            tasks={createdTasks}
+                            orgUsers={this.state.orgUsers}
+                            {...this.props}
+                        />
                     </div>
                 </div>
             )

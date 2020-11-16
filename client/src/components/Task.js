@@ -26,6 +26,7 @@ export default class Task extends Component {
         return (
             <div className="task-card">
                 <div>
+                    <p>{task._id}</p>
                     <p>{summary}</p>
                     <p>{description}</p>
                     <p>{status}</p>
