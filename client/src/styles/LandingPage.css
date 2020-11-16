@@ -1,0 +1,17 @@
+body {
+    margin: 0 auto;
+    padding: 5px;
+  }
+
+
+.sign-in-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgreen;
+    margin-top: 10%;
+}
+
+.sign-in-field {
+    margin: 10px auto;
+}
