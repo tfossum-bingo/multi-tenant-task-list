@@ -1,8 +1,9 @@
 import ApiClient from './ApiClient'
 
 export const __GetOrganizations = async () => {
+  console.log("Org Service Called")
   try {
-    const response = await ApiClient.get('/organizations')
+    const response = await ApiClient.get(`/organizations`)
     return response.data
   }catch(error) {
     throw error

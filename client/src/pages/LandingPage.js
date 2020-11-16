@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import TextInput from '../components/TextInput'
 import { __LoginUser } from '../services/UserService'
 import '../styles/LandingPage.css'
@@ -56,6 +57,11 @@ export default class SignIn extends Component {
             <button>Sign In</button>
             {this.state.formError ? <p>Login Error</p> : <p></p>}
           </form>
+        </div>
+        <div>
+          <NavLink to="/signup">
+            Sign Up
+          </NavLink>
         </div>
       </div>
     )

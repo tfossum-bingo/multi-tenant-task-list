@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage'
 import ListPage from '../pages/ListPage'
+import SignUpPage from '../pages/SignUpPage'
 import { __CheckSession } from '../services/UserService'
 
 class Router extends Component {
@@ -53,6 +54,9 @@ class Router extends Component {
                   {...props}>
                 </LandingPage>
               )} />
+              <Route path="/signup" component={(props) => (
+                <SignUpPage {...props}/>
+              )}/>
               <Route path="/list" component={(props) => (
                 <ListPage user={this.state.user} {...props} />
               )} />

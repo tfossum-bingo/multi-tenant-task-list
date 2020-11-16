@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import TextInput from '../components/TextInput'
-import { __RegisterUser } from '../services/UserServices'
+import SelectOption from '../components/SelectOption'
+import { __RegisterUser } from '../services/UserService'
 import { __GetOrganizations } from '../services/OrganizationService'
+
+import '../styles/App.css'
 
 export default class Signup extends Component {
     // TODO Integrate Auth
@@ -11,24 +14,30 @@ export default class Signup extends Component {
             name: '',
             email: '',
             password: '',
-            organization_id,
+            organization_id: '',
             organizations: []
         }
     }
 
     componentDidMount() {
-        if (this.state.orgUsers === []) {
+        console.log("componentDidMount")
+        console.log("organizations: ", this.state.organizations.length === 0)
+
+        if (this.state.organizations.length === 0) {
+            console.log("Need to get orgs")
             this.getOrganizations()
         }
     }
 
     getOrganizations = async () => {
-        const organizations = await __GetOrganizations().organizations
-        const selectOptions = organizations.map((element, index) => {
+        const organizations = await __GetOrganizations()
+        console.log("SignUp Organizations: ", organizations.organizations)
+        const selectOptions = organizations.organizations.map((element, index) => {
             return [element._id, element.name]
         })
 
-        this.setState({ organization: selectOptions })
+        this.setState({ organizations: selectOptions, organization_id: selectOptions[0][0] })
+
     }
 
     handleChange = ({ target }) => {
@@ -40,16 +49,16 @@ export default class Signup extends Component {
         e.preventDefault()
         try {
             await __RegisterUser(this.state)
-            this.props.history.push('/login')
+            this.props.history.push('/')
         } catch (error) {
             console.log(error)
         }
     }
     render() {
-        const { name, password, email } = this.state
+        const { name, password, email, organization_id } = this.state
         return (
-            <div className="signup flex-col">
-                <form className="flex-col" onSubmit={this.handleSubmit}>
+            <div className="signup-container">
+                <form className="flex-column" onSubmit={this.handleSubmit}>
                     <TextInput
                         placeholder="Your Email"
                         name="email"
