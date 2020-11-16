@@ -35,8 +35,8 @@ export default class Signup extends Component {
         const selectOptions = organizations.organizations.map((element, index) => {
             return [element._id, element.name]
         })
-
-        this.setState({ organizations: selectOptions, organization_id: selectOptions[0][0] })
+        const tempOrgId = selectOptions[0][0]
+        this.setState({ organizations: selectOptions, organization_id: tempOrgId })
 
     }
 

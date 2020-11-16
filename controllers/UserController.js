@@ -48,13 +48,14 @@ const getUserTasks = async (request, response) => {
 
 const createUser = async (request, response) => {
     console.log("HIT createUser")
+    console.log("Request: ", request.body)
     const body = request.body
     const password_digest = await generatePassword(body.password)
     try {
         const user = await new User({
             name: body.name,
             email: body.email,
-            organizerion_id: body.organizerion_id,
+            organization_id: body.organization_id,
             password_digest
         })
         await user.save()

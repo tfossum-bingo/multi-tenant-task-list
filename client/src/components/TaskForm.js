@@ -96,7 +96,8 @@ export default class TaskForm extends Component {
             })
         } else {
             console.log("Assignee is empty")
-            this.setState({assignee_id: props.selectOptions[0][0]})
+            const tempAssigneeId = props.selectOptions[0][0]
+            this.setState({assignee_id: tempAssigneeId})
             console.log("Assignee is now: ", this.state.assignee_id)
         }
     }
