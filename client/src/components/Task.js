@@ -22,12 +22,15 @@ export default class Task extends Component {
 
     render() {
         const { task, orgUsers } = this.props
-        // console.log('Apple: ', apple)
+        const {description, summary, status, priority, assignee_id} = task
         return (
             <div className="task-card">
                 <div>
-                    <p>{task.summary}</p>
-                    <p>{task.description}</p>
+                    <p>{summary}</p>
+                    <p>{description}</p>
+                    <p>{status}</p>
+                    <p>{priority}</p>
+                    <p>{assignee_id.name}</p>
                 </div>
                 <Modal show={this.state.displayModal} onClick={this.toggleModal} >
                     Edit this Task

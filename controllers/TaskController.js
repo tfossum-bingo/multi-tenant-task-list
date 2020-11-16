@@ -35,6 +35,7 @@ const getTask = async (request, response) => {
 
 const createTask = async (req, res) => {
     console.log("HIT createTask")
+    console.log('request.body: ', req.body)
     try {
         const task = await new Task(req.body)
         await task.save()

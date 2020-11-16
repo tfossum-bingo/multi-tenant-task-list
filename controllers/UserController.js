@@ -36,7 +36,11 @@ const getUserTasks = async (request, response) => {
     console.log('HIT getUserTasks', request.params.id)
 
     try {
-        const tasks = await Task.find({ $or: [{ creator_id: request.params.id }, { assignee_id: request.params.id }] })
+        const tasks = await Task.find({ $or: [{ creator_id: request.params.id },
+             { assignee_id: request.params.id }] }).populate([{
+                 model: 'user',
+                 path: 'assignee_id'
+             }])
         if (tasks) {
             return response.status(200).json({ tasks: tasks })
         }

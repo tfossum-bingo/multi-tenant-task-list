@@ -9,6 +9,7 @@ export default class TaskForm extends Component {
     constructor(props) {
         super()
         console.log("TaskForm Props: ", props)
+        
         this.state = {
             _id: '',
             summary: '',
@@ -17,7 +18,9 @@ export default class TaskForm extends Component {
             priority: '',
             assignee_id: '',
             creator_id: '',
-            orgUsers: []
+            orgUsers: [],
+            priorities: [['Low','Low'], ['Medium','Medium'], ['High','High']],
+            statuses: [['Open','Open'], ['Closed','Closed'], ['In Progress','In Progress']]
         }
     }
 
@@ -97,7 +100,7 @@ export default class TaskForm extends Component {
         } else {
             console.log("Assignee is empty")
             const tempAssigneeId = props.selectOptions[0][0]
-            this.setState({assignee_id: tempAssigneeId})
+            this.setState({assignee_id: tempAssigneeId, status: 'Open', priority: 'Medium'})
             console.log("Assignee is now: ", this.state.assignee_id)
         }
     }
@@ -126,19 +129,17 @@ export default class TaskForm extends Component {
                         />
                     </div>
                     <div>
-                        <TextInput
-                            placeholder="Status"
+                        <SelectOption
+                            selectOptions={this.state.statuses}
                             name="status"
-                            type="text"
                             value={status}
                             onChange={this.handleChange}
                         />
                     </div>
                     <div>
-                        <TextInput
-                            placeholder="Priority"
+                        <SelectOption
+                            selectOptions={this.state.priorities}
                             name="priority"
-                            type="text"
                             value={priority}
                             onChange={this.handleChange}
                         />
