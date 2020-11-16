@@ -4,6 +4,7 @@ import LandingPage from '../pages/LandingPage'
 import ListPage from '../pages/ListPage'
 import SignUpPage from '../pages/SignUpPage'
 import { __CheckSession } from '../services/UserService'
+import ProtectedRoute from './ProtectedRoute'
 
 class Router extends Component {
   constructor() {
@@ -55,11 +56,14 @@ class Router extends Component {
                 </LandingPage>
               )} />
               <Route path="/signup" component={(props) => (
-                <SignUpPage {...props}/>
-              )}/>
-              <Route path="/list" component={(props) => (
-                <ListPage user={this.state.user} {...props} />
+                <SignUpPage {...props} />
               )} />
+              <ProtectedRoute
+                authenticated={this.state.authenticated}
+                path="/list"
+                component={(props) => (
+                  <ListPage user={this.state.user} {...props} />
+                )} />
             </Switch>
           )}
       </main>
