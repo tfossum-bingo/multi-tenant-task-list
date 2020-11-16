@@ -45,7 +45,6 @@ export default class ViewTasks extends Component {
         this.setState({ displayModal: !this.state.displayModal })
     }
 
-
     render() {
         const { tasks } = this.state
         console.log('ListPage User: ', this.state.user)
@@ -63,6 +62,12 @@ export default class ViewTasks extends Component {
                         <button onClick={e => this.toggleModal()} >
                             Create Task
                         </button>
+                    </div>
+                    <div>
+                        <Modal show={this.state.displayModal}
+                            onClick={this.toggleModal}>
+                                <TaskForm {...this.props} />
+                        </Modal>
                     </div>
                     <div className="tasks-container">
                         ListPage
