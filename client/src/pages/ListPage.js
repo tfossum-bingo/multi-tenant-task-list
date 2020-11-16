@@ -46,8 +46,11 @@ export default class ViewTasks extends Component {
         if(this.state.user){
             console.log("getOrg: ", this.state.user.organization_id)
             const orgUsers = await __GetUsers(this.state.user.organization_id)
-            this.setState({ orgUsers: orgUsers })
-            console.log("After Users: ", orgUsers)
+            const selectOptions = orgUsers.users.map((user, index) => {
+                return [user._id, user.name]
+            })
+            this.setState({ orgUsers: selectOptions })
+            console.log("After Users: ", selectOptions)
         }
     }
 
@@ -77,20 +80,20 @@ export default class ViewTasks extends Component {
                             User ID: {`${this.state.user._id}`}
                         </div>
                         <button onClick={e => this.toggleModal()} >
-                            Create Task
+                            New Task
                         </button>
                     </div>
                     <div>
                         <Modal show={this.state.displayModal}
                             onClick={this.toggleModal}>
-                            <TaskForm orgUsers={this.state.orgUsers} creator_id={this.state.user._id} {...this.props} />
+                            <TaskForm selectOptions={this.state.orgUsers} creator_id={this.state.user._id} {...this.props} />
                         </Modal>
                     </div>
                     <div className="tasks-container">
                         ListPage
                     {tasks.map((task, index) => {
                         return (
-                            <Task orgUsers={this.state.orgUsers} task={task} key={task._id} {...this.props}></Task>
+                            <Task selectOptions={this.state.orgUsers} task={task} key={task._id} {...this.props}></Task>
                         )
                     })
                         }

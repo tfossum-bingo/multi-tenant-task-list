@@ -1,5 +1,15 @@
 import ApiClient from './ApiClient'
 
+export const __GetOrganizations = async () => {
+  try {
+    const response = await ApiClient.get('/organizations')
+    return response.data
+  }catch(error) {
+    throw error
+  }
+
+}
+
 export const __GetUsers = async (organizationId) => {
     try {
       const res = await ApiClient.get(`/organizations/${organizationId}/users`)

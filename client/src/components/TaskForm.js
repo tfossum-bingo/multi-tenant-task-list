@@ -96,7 +96,7 @@ export default class TaskForm extends Component {
             })
         } else {
             console.log("Assignee is empty")
-            this.setState({assignee_id: props.orgUsers.users[0]._id})
+            this.setState({assignee_id: props.selectOptions[0][0]})
             console.log("Assignee is now: ", this.state.assignee_id)
         }
     }
@@ -144,7 +144,7 @@ export default class TaskForm extends Component {
                     </div>
                     <div>
                         <SelectOption
-                            orgUsers={this.props.orgUsers}
+                            selectOptions={this.props.selectOptions}
                             name="assignee_id"
                             value={assignee_id}
                             onChange={this.handleChange}
