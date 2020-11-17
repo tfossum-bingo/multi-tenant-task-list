@@ -127,3 +127,15 @@ body {
 .priority-low {
     color: steelblue;
 }
+
+.status-open {
+    color: gray;
+}
+
+.status-inprogress {
+    color: orangered;
+}
+
+.status-closed {
+    color: green;
+}

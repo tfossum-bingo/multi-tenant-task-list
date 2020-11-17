@@ -2,7 +2,7 @@ import { React, Component } from 'react'
 import Modal from './modals/Modal'
 import TaskForm from './TaskForm'
 import TaskPriority from './TaskPriority'
-
+import TaskStatus from './TaskStatus'
 
 import '../styles/App.css'
 import '../styles/ListPage.css'
@@ -40,7 +40,7 @@ export default class Task extends Component {
                     <TaskPriority priority={priority}/>
                 </div>
                 <div className='task-status'>
-                    {status}
+                    <TaskStatus status={status}/>
                 </div>
                 <div className='task-assignee'>
                     Assigned: {assignee_id.name}
