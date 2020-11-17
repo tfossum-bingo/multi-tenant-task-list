@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/TaskPage.css'
+import '../styles/ListPage.css'
 
 export default (props) =>
   props.fieldType === 'textfield' ? (

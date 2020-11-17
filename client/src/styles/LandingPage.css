@@ -1,14 +1,18 @@
 body {
     margin: 0 auto;
-    padding: 5px;
+
   }
+
+.title-container {
+    width: 100%;
+    text-align: center;
+}
 
 .sign-in-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: lightgreen;
     margin-top: 10%;
 }
 
@@ -16,8 +20,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 325px;
     background-color: lightsalmon;
+    background-color:rgba(63, 59, 59, 0.95);
     padding: 15px;
     border-radius: 7px;
 }

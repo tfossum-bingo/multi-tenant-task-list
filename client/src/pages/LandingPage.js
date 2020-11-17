@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import TextInput from '../components/TextInput'
 import { __LoginUser } from '../services/UserService'
+import WelcomeHeader from '../components/WelcomeHeader'
+
 import '../styles/App.css'
 import '../styles/LandingPage.css'
 import '../styles/ListPage.css'
-import '../styles/TaskPage.css'
 
 
 export default class SignIn extends Component {
@@ -37,9 +38,11 @@ export default class SignIn extends Component {
   render() {
     const { email, password } = this.state
     return (
-      <div className="sign-in-container">
-        <div className='sign-in-form'>
-          <form className="flex-column" onSubmit={this.handleSubmit}>
+      <div>
+        <WelcomeHeader/>
+        <div className="sign-in-container">
+          <div className='sign-in-form'>
+            <form className="flex-column" onSubmit={this.handleSubmit}>
               <TextInput
                 placeholder="Email"
                 name="email"
@@ -54,14 +57,15 @@ export default class SignIn extends Component {
                 value={password}
                 onChange={this.handleChange}
               />
-                <button>Sign In</button>
-            {this.state.formError ? <p>Login Error</p> : <p></p>}
-          </form>
-        </div>
-        <div className='sign-up-link-container'>
-          <NavLink to="/signup">
-            Sign Up
+              <button>Sign In</button>
+              {this.state.formError ? <p>Login Error</p> : <p></p>}
+            </form>
+          </div>
+          <div className='sign-up-link-container'>
+            <NavLink to="/signup">
+              Sign Up
           </NavLink>
+          </div>
         </div>
       </div>
     )

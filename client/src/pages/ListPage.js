@@ -8,7 +8,6 @@ import { __GetProfile } from '../services/UserService'
 import { __GetUsers } from '../services/OrganizationService'
 
 import '../styles/App.css'
-import '../styles/TaskPage.css'
 import '../styles/ListPage.css'
 
 
@@ -102,7 +101,7 @@ export default class ViewTasks extends Component {
                         </div>
                     </div>
                     <div className="create-task">
-                        <div>
+                        <div className="create-task-button">
                             <button
                                 onClick={e => this.toggleModal()} >
                                 New Task

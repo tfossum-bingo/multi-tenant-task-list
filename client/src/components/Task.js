@@ -1,6 +1,7 @@
 import { React, Component } from 'react'
 import Modal from './modals/Modal'
 import TaskForm from './TaskForm'
+import '../styles/ListPage.css'
 
 export default class Task extends Component {
     constructor(props) {
@@ -25,23 +26,35 @@ export default class Task extends Component {
         const { description, summary, status, priority, assignee_id } = task
         return (
             <div className="task-card">
-                <div>
-                    <p>{task._id}</p>
-                    <p>{summary}</p>
-                    <p>{description}</p>
-                    <p>{status}</p>
-                    <p>{priority}</p>
-                    <p>{assignee_id.name}</p>
+                <div className='task-title'>
+                    {summary}
+                </div >
+                <div className='task-description'>
+                    {description}
                 </div>
-                <Modal show={this.state.displayModal}>
-                    <TaskForm
-                        task={task}
-                        orgUsers={orgUsers}
-                        onClick={this.toggleModal}
-                        {...this.props}
-                    />
-                </Modal>
-                <button onClick={e => this.toggleModal()}>{this.modalButtonText()}</button>
+                <div className="task-priority">
+                    {priority}
+                </div>
+                <div className='task-status'>
+                    {status}
+                </div>
+                <div className='task-assignee'>
+                    {assignee_id.name}
+                </div>
+                <div className='task-id'>
+                    {task._id}
+                </div>
+                <div className='task-edit'>
+                    <Modal show={this.state.displayModal}>
+                        <TaskForm
+                            task={task}
+                            orgUsers={orgUsers}
+                            onClick={this.toggleModal}
+                            {...this.props}
+                        />
+                    </Modal>
+                    <button onClick={e => this.toggleModal()}>{this.modalButtonText()}</button>
+                </div>
 
             </div>
         )
