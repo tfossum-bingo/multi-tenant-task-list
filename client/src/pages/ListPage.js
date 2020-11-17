@@ -9,7 +9,7 @@ import { __GetUsers } from '../services/OrganizationService'
 
 import '../styles/App.css'
 import '../styles/TaskPage.css'
-import '../styles/Task.css'
+import '../styles/ListPage.css'
 export default class ViewTasks extends Component {
     constructor(props) {
         super()
@@ -89,26 +89,28 @@ export default class ViewTasks extends Component {
                         <div>
                             <h1>Traxer</h1>
                         </div>
-                        <h4>{this.state.user.name}</h4>
+                        <div>
+                            <h4>{this.state.user.name}</h4>
+                        </div>
                         <div>
                             <Logout></Logout>
                         </div>
-                        <div>
-                            User ID: {`${this.state.user._id}`}
-                        </div>
                     </div>
                     <div className="create-task">
-                        <button onClick={e => this.toggleModal()} >
-                            New Task
-                        </button>
-                        <Modal show={this.state.displayModal}
-                            onClick={this.toggleModal}>
-                            <TaskForm
-                                onClick={this.toggleModal}
-                                selectOptions={this.state.orgUsers}
-                                creator_id={this.state.user._id}
-                                {...this.props} />
-                        </Modal>
+                        <div>
+                            <button
+                                onClick={e => this.toggleModal()} >
+                                New Task
+                            </button>
+                            <Modal show={this.state.displayModal}
+                                onClick={this.toggleModal}>
+                                <TaskForm
+                                    onClick={this.toggleModal}
+                                    selectOptions={this.state.orgUsers}
+                                    creator_id={this.state.user._id}
+                                    {...this.props} />
+                            </Modal>
+                        </div>
                     </div>
                     <div className='task-lists-container flex-row'>
                         <TaskList
