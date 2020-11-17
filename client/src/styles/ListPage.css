@@ -87,12 +87,32 @@ body {
     margin: 10px;
 }
 
+.no-tasks-container {
+    width: 75%;
+    height: 300px;
+    margin: 50px;
+    padding: 70px;
+    border-radius: 7px;
+    background-color: lightblue;
+    background-color: rgba(173, 216, 230, .9);
+    text-align: center;
+}
+
+.no-tasks-inner {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(211,211,211,.9);
+}
+
+.no-task-message {
+    padding-top: 100px;
+}
+
 .tasks-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 0;
 }
 
 .task-card {

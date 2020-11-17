@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
-import TaskForm from '../components/TaskForm'
-import Modal from '../components/modals/Modal'
-import TaskList from '../components/TaskList'
 import Menu from '../components/Menu'
+import Modal from '../components/modals/Modal'
+import NoTasks from '../components/NoTasks'
+import TaskForm from '../components/TaskForm'
+import TaskList from '../components/TaskList'
 import StatsOpen from '../components/StatsOpen'
 
 import { __GetTasks } from '../services/TaskService'
@@ -37,6 +38,14 @@ export default class ViewTasks extends Component {
         }
         this.getProfile(userID)
         this.getTasks()
+    }
+
+    displayNoTasks() {
+        const {assignedTasks, createdTasks} = this.state
+        if((assignedTasks === null || assignedTasks.length === 0) || (createdTasks === null || createdTasks.length === 0)) {
+            return true
+        }
+        return false
     }
 
     getTasks = async () => {
@@ -137,7 +146,9 @@ export default class ViewTasks extends Component {
                             orgUsers={this.state.orgUsers}
                             {...this.props}
                         />
+                        <NoTasks displayNoTasks={this.displayNoTasks()}/>
                     </div>
+
                 </div>
             )
         }
