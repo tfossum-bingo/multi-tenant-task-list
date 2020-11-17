@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+
 import TaskForm from '../components/TaskForm'
 import Modal from '../components/modals/Modal'
 import TaskList from '../components/TaskList'
 import Menu from '../components/Menu'
+import StatsOpen from '../components/StatsOpen'
+
 import { __GetTasks } from '../services/TaskService'
 import { __GetProfile } from '../services/UserService'
 import { __GetUsers } from '../services/OrganizationService'
@@ -85,17 +88,20 @@ export default class ViewTasks extends Component {
             return (
                 <div className="task-page">
                     <div className="header">
-                        <div>
-                            <h1>Traxer</h1>
+                        <div className='logo-box'>
+                            <h1 id='header-logo'>Traxer</h1>
+                            <span className='tag-line'>
+                                Task tracking, simplified
+                            </span>
                         </div>
                         <div className="flex-row">
                             <div className='menu-box' onClick={this.toggleMenu} >
                                 <i class="fa fa-bars priority-arrow"></i>
                             </div>
-                            <Menu 
+                            <Menu
                                 displayMenu={this.state.displayMenu}
-                                user={this.state.user} 
-                                onClick={this.toggleMenu}/>
+                                user={this.state.user}
+                                onClick={this.toggleMenu} />
                         </div>
                     </div>
                     <div className="create-task">
@@ -112,6 +118,10 @@ export default class ViewTasks extends Component {
                                     creator_id={this.state.user._id}
                                     {...this.props} />
                             </Modal>
+                        </div>
+                        <div className='stats-container'>
+                            <StatsOpen label='Other Opens:' tasks={this.state.createdTasks} />
+                            <StatsOpen label='My Opens:' tasks={this.state.assignedTasks} />
                         </div>
                     </div>
                     <div className='task-lists-container flex-row'>

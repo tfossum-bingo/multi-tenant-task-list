@@ -18,6 +18,18 @@ body {
     color: white;
 }
 
+.logo-box {
+    margin-left: 10px;
+}
+
+#header-logo {
+    margin-bottom: 10px;
+}
+
+.tag-line {
+    font-size: .8em;
+    font-style: italic;
+}
 .menu-box {
     padding: 10px;
 }
@@ -42,11 +54,12 @@ body {
 
 .create-task {
     width: 100%;
-    height: 50px;
+    height: 40px;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: right;
+    justify-content: space-between;
     padding: 10px;
+    border-bottom: darkgray solid 1px;
 }
 
 .create-task-button {
@@ -56,6 +69,24 @@ body {
 .create-task-container {
     width: 200px;
 }
+
+.stats-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.task-stat {
+    margin-right: 20px;
+}
+
+.stats-open-assigned {
+    font-size: 1.2em;
+    display: inline-block;
+    font-weight: bolder;
+    color: slateblue;
+    margin: 10px;
+}
+
 .tasks-container {
     display: flex;
     flex-direction: column;
