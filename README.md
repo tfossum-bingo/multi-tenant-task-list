@@ -2,7 +2,7 @@
 
 ## November 9, 2020
 
-### By; Ted Fossum
+### By: Ted Fossum
 
 [LinkedIn](https://www.linkedin.com/in/tedfossum/)
 ***
