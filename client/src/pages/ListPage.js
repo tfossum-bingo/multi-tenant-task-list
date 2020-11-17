@@ -41,19 +41,11 @@ export default class ViewTasks extends Component {
     }
 
     displayNoTasks() {
-        const {assignedTasks, createdTasks} = this.state
-        if((assignedTasks === null || assignedTasks.length === 0) || (createdTasks === null || createdTasks.length === 0)) {
+        const { assignedTasks, createdTasks } = this.state
+        if ((assignedTasks === null || assignedTasks.length === 0) || (createdTasks === null || createdTasks.length === 0)) {
             return true
         }
         return false
-    }
-
-    getTasks = async () => {
-        const localUserId = localStorage.getItem("userId")
-        const tasks = await __GetTasks(localUserId)
-        const assignedTasks = this.findAssignedTasks(tasks)
-        const createdTasks = this.findCreatedTasks(tasks)
-        this.setState({ assignedTasks: assignedTasks, createdTasks: createdTasks })
     }
 
     findAssignedTasks = (tasks) => {
@@ -81,6 +73,37 @@ export default class ViewTasks extends Component {
         const fetchedProfile = await __GetProfile(userId)
         this.setState({ user: fetchedProfile.user })
         this.getOrganizationUsers()
+    }
+
+    getTasks = async () => {
+        const localUserId = localStorage.getItem("userId")
+        const tasks = await __GetTasks(localUserId)
+        let assignedTasks = this.findAssignedTasks(tasks)
+        let createdTasks = this.findCreatedTasks(tasks)
+
+        assignedTasks = this.sortTasks(assignedTasks)
+        createdTasks = this.sortTasks(createdTasks)
+
+        this.setState({ assignedTasks: assignedTasks, createdTasks: createdTasks })
+    }
+
+    sortTasks(tasks) {
+        return tasks.sort((task1, task2) => {
+            console.log('Sort Tasks: ', task1.status, task2.status)
+            switch (true) {
+                case (task1.status === 'Open'):
+                    return -1
+                case (task2.status === 'Open'):
+                    return 1
+                case (task1.status === 'In Progress' && task2.status === 'Closed'):
+                    return -1
+                case (task2.status === 'In Progress'):
+                    return -1
+                default:
+                    return 0
+            }
+
+        })
     }
 
     toggleModal = (e) => {
@@ -146,7 +169,7 @@ export default class ViewTasks extends Component {
                             orgUsers={this.state.orgUsers}
                             {...this.props}
                         />
-                        <NoTasks displayNoTasks={this.displayNoTasks()}/>
+                        <NoTasks displayNoTasks={this.displayNoTasks()} />
                     </div>
 
                 </div>
