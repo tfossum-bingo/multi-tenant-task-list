@@ -1,5 +1,4 @@
 import React from 'react'
-import Logout from './LogOut'
 import LogOut from './LogOut'
 
 export default (props) => {
@@ -15,7 +14,7 @@ export default (props) => {
                 <div>
                     User: {name}
                 </div>
-                <Logout></Logout>
+                <LogOut></LogOut>
             </div>
         )
     } else {
