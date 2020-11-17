@@ -25,7 +25,7 @@ class Logout extends Component {
         return (
             <div className='logout-container'>
                 <button onClick={this.logout}>
-                    Logout*
+                    Logout
                 </button>
             </div>
         )

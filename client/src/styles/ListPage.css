@@ -19,15 +19,26 @@ body {
     color: white;
 }
 
+.menu-box {
+    padding: 10px;
+}
+
 .menu-pop-out {
     position: fixed;
     z-index: 1;
     right: 0;
     top: 0;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
     height: 200px;
     padding: 20px;
-    background-color: plum;
+    border-radius: 7px;
+    font-size: .8em;
+}
+.menu-logout {
+    text-align: center;
 }
 
 .create-task {

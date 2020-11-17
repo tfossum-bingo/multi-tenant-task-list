@@ -11,17 +11,20 @@
 
 .modal {
     margin: 0 auto;
-    background-color: lightcoral;
-    background-color:rgba(63, 59, 59, 0.95);
     align-items: center;
     margin: 15% auto;
     padding: 20px;
     width: 400px;
-    border-radius: 7px;
-    border: white solid 3px;
     /* position: fixed; */
     /* top: 100px; */
     /* width: 50%; */
+}
+
+.modal-styles {
+    background-color: lightcoral;
+    background-color:rgba(63, 59, 59, 0.95);
+    border-radius: 7px;
+    border: white solid 3px;
 }
 
 .modal-header {

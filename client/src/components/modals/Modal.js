@@ -13,7 +13,7 @@ export default class Modal extends React.Component {
         }
         return (
             <div className='modal-layer'>
-                <div className="modal">
+                <div className="modal modal-styles">
                     {this.props.children}
                 </div>
             </div>
