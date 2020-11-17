@@ -4,6 +4,9 @@ import TextInput from '../components/TextInput'
 import { __LoginUser } from '../services/UserService'
 import '../styles/App.css'
 import '../styles/LandingPage.css'
+import '../styles/ListPage.css'
+import '../styles/TaskPage.css'
+
 
 export default class SignIn extends Component {
   constructor() {
@@ -35,9 +38,8 @@ export default class SignIn extends Component {
     const { email, password } = this.state
     return (
       <div className="sign-in-container">
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="sign-in-field">
+        <div className='sign-in-form'>
+          <form className="flex-column" onSubmit={this.handleSubmit}>
               <TextInput
                 placeholder="Email"
                 name="email"
@@ -45,8 +47,6 @@ export default class SignIn extends Component {
                 value={email}
                 onChange={this.handleChange}
               />
-            </div>
-            <div className="sign-in-field">
               <TextInput
                 placeholder="Password"
                 name="password"
@@ -54,12 +54,11 @@ export default class SignIn extends Component {
                 value={password}
                 onChange={this.handleChange}
               />
-            </div>
-            <button>Sign In</button>
+                <button>Sign In</button>
             {this.state.formError ? <p>Login Error</p> : <p></p>}
           </form>
         </div>
-        <div>
+        <div className='sign-up-link-container'>
           <NavLink to="/signup">
             Sign Up
           </NavLink>

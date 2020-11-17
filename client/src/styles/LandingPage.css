@@ -3,15 +3,30 @@ body {
     padding: 5px;
   }
 
-
 .sign-in-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: lightgreen;
     margin-top: 10%;
 }
 
+.sign-in-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    background-color: lightsalmon;
+    padding: 15px;
+    border-radius: 7px;
+}
+
 .sign-in-field {
     margin: 10px auto;
+}
+
+.sign-up-link-container {
+    margin: 20px;
+    font-size: 1.5em;
 }

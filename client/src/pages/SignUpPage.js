@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import TextInput from '../components/TextInput'
 import SelectOption from '../components/SelectOption'
 import { __RegisterUser } from '../services/UserService'
@@ -57,39 +58,45 @@ export default class Signup extends Component {
     render() {
         const { name, password, email, organization_id } = this.state
         return (
-            <div className="signup-container">
-                <form className="flex-column" onSubmit={this.handleSubmit}>
-                    <TextInput
-                        placeholder="Your Email"
-                        name="email"
-                        value={email}
-                        type="email"
-                        onChange={this.handleChange}
-                    />
-                    <TextInput
-                        placeholder="Your Name"
-                        type="text"
-                        name="name"
-                        value={name}
-                        onChange={this.handleChange}
-                    />
-                    <TextInput
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={this.handleChange}
-                    />
-                    <div>
-                        <SelectOption
-                            selectOptions={this.state.organizations}
-                            name="organization_id"
-                            value={organization_id}
+            <div className='sign-in-container '>
+                <div className="sign-in-form">
+                    <form className="flex-column" onSubmit={this.handleSubmit}>
+                        <TextInput
+                            placeholder="Your Email"
+                            name="email"
+                            value={email}
+                            type="email"
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <button>Sign Up</button>
-                </form>
+                        <TextInput
+                            placeholder="Your Name"
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={this.handleChange}
+                        />
+                        <TextInput
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={this.handleChange}
+                        />
+                            <SelectOption
+                                selectOptions={this.state.organizations}
+                                name="organization_id"
+                                value={organization_id}
+                                onChange={this.handleChange}
+                            />
+                        <button>Sign Up</button>
+                        {this.state.formError ? <p>Login Error</p> : <p></p>}
+                    </form>
+                </div>
+                <div className='sign-up-link-container'>
+                    <NavLink to="/">
+                        Return to Sign-In
+                    </NavLink>
+                </div>
             </div>
         )
     }

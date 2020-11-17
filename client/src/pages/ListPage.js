@@ -10,6 +10,8 @@ import { __GetUsers } from '../services/OrganizationService'
 import '../styles/App.css'
 import '../styles/TaskPage.css'
 import '../styles/ListPage.css'
+
+
 export default class ViewTasks extends Component {
     constructor(props) {
         super()
@@ -94,6 +96,9 @@ export default class ViewTasks extends Component {
                         </div>
                         <div>
                             <Logout></Logout>
+                        </div>
+                        <div className='menu-box' >
+                            <i class="fa fa-bars"></i>
                         </div>
                     </div>
                     <div className="create-task">
