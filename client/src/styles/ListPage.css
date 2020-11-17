@@ -47,7 +47,6 @@ body {
     display: flex;
     flex-direction: row-reverse;
     justify-content: right;
-    /* background-color: lavender; */
     padding: 10px;
 }
 
@@ -57,7 +56,6 @@ body {
 
 .create-task-container {
     width: 200px;
-    /* background-color: lightsalmon; */
 }
 .tasks-container {
     display: flex;
@@ -65,7 +63,6 @@ body {
     justify-content: flex-start;
     align-items: center;
     padding: 0;
-    /* background-color: lightgreen; */
 }
 
 .task-card {
@@ -110,7 +107,6 @@ body {
     grid-row: 2/5;
     grid-column: 2/4;
     padding: .5em;
-    /* background-color: lightpink; */
 }
 
 .task-assignee {
