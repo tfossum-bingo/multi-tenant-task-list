@@ -3,6 +3,7 @@ import Logout from '../components/LogOut'
 import TaskForm from '../components/TaskForm'
 import Modal from '../components/modals/Modal'
 import TaskList from '../components/TaskList'
+import Menu from '../components/Menu'
 import { __GetTasks } from '../services/TaskService'
 import { __GetProfile } from '../services/UserService'
 import { __GetUsers } from '../services/OrganizationService'
@@ -20,6 +21,7 @@ export default class ViewTasks extends Component {
             createdTasks: null,
             user: null,
             displayModal: false,
+            displayMenu: false,
             orgUsers: []
         }
     }
@@ -80,6 +82,11 @@ export default class ViewTasks extends Component {
         this.setState({ displayModal: !this.state.displayModal })
     }
 
+    toggleMenu = (e) => {
+        console.log("HIT Toggle Menu")
+        this.setState({ displayMenu: !this.state.displayMenu })
+    }
+
     render() {
         const { assignedTasks, createdTasks } = this.state
         console.log('ListPage User: ', this.state.user)
@@ -91,15 +98,13 @@ export default class ViewTasks extends Component {
                             <h1>Traxer</h1>
                         </div>
                         <div className="flex-row">
-                            <div className='menu-box' >
-                                <i class="fa fa-bars"></i>
+                            <div className='menu-box' onClick={this.toggleMenu} >
+                                <i class="fa fa-bars priority-arrow"></i>
                             </div>
-                            <div>
-                                <h4>{this.state.user.name}</h4>
-                            </div>
-                            <div>
-                                <Logout></Logout>
-                            </div>
+                            <Menu 
+                                displayMenu={this.state.displayMenu}
+                                user={this.state.user} 
+                                onClick={this.toggleMenu}/>
                         </div>
                     </div>
                     <div className="create-task">
