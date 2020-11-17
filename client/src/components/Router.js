@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
+
 import LandingPage from '../pages/LandingPage'
 import ListPage from '../pages/ListPage'
 import SignUpPage from '../pages/SignUpPage'
-import { __CheckSession } from '../services/UserService'
+import OrganizationPage from '../pages/OrganizationPage'
 import ProtectedRoute from './ProtectedRoute'
+
+import { __CheckSession } from '../services/UserService'
 
 class Router extends Component {
   constructor() {
@@ -53,6 +56,9 @@ class Router extends Component {
               )} />
               <Route path="/signup" component={(props) => (
                 <SignUpPage {...props} />
+              )} />
+              <Route path="/organization_admin" component={(props) => (
+                <OrganizationPage {...props} />
               )} />
               <ProtectedRoute
                 authenticated={this.state.authenticated}

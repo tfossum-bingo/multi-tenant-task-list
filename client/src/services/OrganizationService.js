@@ -18,3 +18,12 @@ export const __GetUsers = async (organizationId) => {
       throw error
     }
   }
+
+  export const __CreateOrganization = async (formData) => {
+    try {
+      const res = await ApiClient.post('/organizations/', formData)
+      return res.data
+    } catch (error) {
+      throw error
+    }
+  }
