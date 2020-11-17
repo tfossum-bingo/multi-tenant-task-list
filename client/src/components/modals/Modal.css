@@ -15,13 +15,9 @@
     margin: 15% auto;
     padding: 20px;
     width: 400px;
-    /* position: fixed; */
-    /* top: 100px; */
-    /* width: 50%; */
 }
 
 .modal-styles {
-    background-color: lightcoral;
     background-color:rgba(63, 59, 59, 0.95);
     border-radius: 7px;
     border: white solid 3px;

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import '../styles/index.css'
 import SelectOption from './SelectOption'
 import TextInput from './TextInput'
-
 import { __CreateTask, __DeleteTask, __UpdateTask } from '../services/TaskService'
+
+import '../styles/index.css'
 
 export default class TaskForm extends Component {
     constructor(props) {
         super()
-        console.log("TaskForm Props: ", props)
 
         this.state = {
             _id: '',
@@ -32,12 +31,10 @@ export default class TaskForm extends Component {
 
     handleChange = ({ target }) => {
         this.setState({ [target.name]: target.value })
-        console.log(this.state)
     }
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("Form State: ", this.props)
         const newValues = {
             summary: this.state.summary,
             description: this.state.description,
@@ -73,7 +70,6 @@ export default class TaskForm extends Component {
     }
 
     componentDidMount() {
-        console.log("TaskForm didMount")
         this.setStateFromProps(this.props)
     }
 
@@ -84,7 +80,6 @@ export default class TaskForm extends Component {
     }
 
     setStateFromProps(props) {
-        console.log("TaskForm setStateFromProps")
         if (props.task) {
             const { _id, summary, description, status, priority, assignee_id, creator_id } = props.task
 
@@ -98,10 +93,8 @@ export default class TaskForm extends Component {
                 creator_id: creator_id
             })
         } else {
-            console.log("Assignee is empty")
             const tempAssigneeId = props.selectOptions[0][0]
             this.setState({ assignee_id: tempAssigneeId, status: 'Open', priority: 'Medium' })
-            console.log("Assignee is now: ", this.state.assignee_id)
         }
     }
 

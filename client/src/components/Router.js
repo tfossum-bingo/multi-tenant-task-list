@@ -24,7 +24,6 @@ class Router extends Component {
     const token = localStorage.getItem("token")
     if (token) {
       const session = await __CheckSession()
-      console.log("My session: ", session)
       if (session) {
         this.props.history.push('/list')
       }
@@ -32,13 +31,10 @@ class Router extends Component {
   }
 
   toggleAuthenticated = (value, user, done) => {
-    console.log("HIT toggleAuthenticated")
-    console.log("TA User: ", user)
     this.setState({
       authenticated: value,
       user: user
     }, () => done())
-    console.log("State after Auth: ", this.state)
   }
 
   render() {

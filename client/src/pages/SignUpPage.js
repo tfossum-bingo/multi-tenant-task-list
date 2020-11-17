@@ -9,7 +9,6 @@ import WelcomeHeader from '../components/WelcomeHeader'
 import '../styles/App.css'
 
 export default class Signup extends Component {
-    // TODO Integrate Auth
     constructor() {
         super()
         this.state = {
@@ -22,18 +21,14 @@ export default class Signup extends Component {
     }
 
     componentDidMount() {
-        console.log("componentDidMount")
-        console.log("organizations: ", this.state.organizations.length === 0)
 
         if (this.state.organizations.length === 0) {
-            console.log("Need to get orgs")
             this.getOrganizations()
         }
     }
 
     getOrganizations = async () => {
         const organizations = await __GetOrganizations()
-        console.log("SignUp Organizations: ", organizations.organizations)
         const selectOptions = organizations.organizations.map((element, index) => {
             return [element._id, element.name]
         })
@@ -44,7 +39,6 @@ export default class Signup extends Component {
 
     handleChange = ({ target }) => {
         this.setState({ [target.name]: target.value })
-        console.log(this.state)
     }
 
     handleSubmit = async (e) => {

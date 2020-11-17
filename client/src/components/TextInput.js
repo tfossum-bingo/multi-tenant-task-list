@@ -4,7 +4,6 @@ import '../styles/ListPage.css'
 export default (props) =>
   props.fieldType === 'textfield' ? (
     <textarea
-      // className="task-entry"
       type={props.type}
       name={props.name}
       value={props.value}
@@ -13,7 +12,6 @@ export default (props) =>
     />
   ) : (
       <input
-        // className="task-entry"
         type={props.type}
         name={props.name}
         value={props.value}

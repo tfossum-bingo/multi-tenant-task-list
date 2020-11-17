@@ -5,7 +5,6 @@ export default (props) => {
     const { name, email } = props.user
 
     if (props.displayMenu) {
-        console.log("HIT Return Menu")
         return (
             <div className='menu-pop-out modal-styles'>
                 <div>
@@ -23,7 +22,6 @@ export default (props) => {
                 </div>
                 <div className='menu-logout'>
                     <LogOut></LogOut>
-
                 </div>
             </div>
         )

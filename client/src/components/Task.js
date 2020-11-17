@@ -21,7 +21,6 @@ export default class Task extends Component {
     }
 
     toggleModal = (e) => {
-        console.log("Edit Task modal")
         this.setState({ displayModal: !this.state.displayModal })
     }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Logout from '../components/LogOut'
 import TaskForm from '../components/TaskForm'
 import Modal from '../components/modals/Modal'
 import TaskList from '../components/TaskList'
@@ -15,7 +14,6 @@ import '../styles/ListPage.css'
 export default class ViewTasks extends Component {
     constructor(props) {
         super()
-        console.log("VT Props: ", props)
         this.state = {
             assignedTasks: null,
             createdTasks: null,
@@ -39,7 +37,6 @@ export default class ViewTasks extends Component {
     }
 
     getTasks = async () => {
-        console.log('HIT getTasks')
         const localUserId = localStorage.getItem("userId")
         const tasks = await __GetTasks(localUserId)
         const assignedTasks = this.findAssignedTasks(tasks)
@@ -54,20 +51,17 @@ export default class ViewTasks extends Component {
     }
 
     findCreatedTasks = (tasks) => {
-        console.log("CreatedTasks: ", tasks)
         const createdTasks = tasks.filter(task => (task.assignee_id._id !== this.state.user._id && task.creator_id === this.state.user._id))
         return createdTasks
     }
 
     getOrganizationUsers = async () => {
         if (this.state.user) {
-            console.log("getOrg: ", this.state.user.organization_id)
             const orgUsers = await __GetUsers(this.state.user.organization_id)
             const selectOptions = orgUsers.users.map((user, index) => {
                 return [user._id, user.name]
             })
             this.setState({ orgUsers: selectOptions })
-            console.log("After Users: ", selectOptions)
         }
     }
 
@@ -78,18 +72,15 @@ export default class ViewTasks extends Component {
     }
 
     toggleModal = (e) => {
-        console.log("Edit Task modal")
         this.setState({ displayModal: !this.state.displayModal })
     }
 
     toggleMenu = (e) => {
-        console.log("HIT Toggle Menu")
         this.setState({ displayMenu: !this.state.displayMenu })
     }
 
     render() {
         const { assignedTasks, createdTasks } = this.state
-        console.log('ListPage User: ', this.state.user)
         if (assignedTasks !== null || createdTasks !== null) {
             return (
                 <div className="task-page">

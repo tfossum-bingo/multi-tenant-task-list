@@ -2,7 +2,6 @@ import React from 'react'
 import Task from '../components/Task'
 
 export default (props) => {
-    console.log('TaskList Props: ', props)
     if (props.tasks.length > 0) {
         return (
             <div className="tasks-container">
