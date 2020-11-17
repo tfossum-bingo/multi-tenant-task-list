@@ -89,7 +89,6 @@ export default class ViewTasks extends Component {
 
     sortTasks(tasks) {
         return tasks.sort((task1, task2) => {
-            console.log('Sort Tasks: ', task1.status, task2.status)
             switch (true) {
                 case (task1.status === 'Open'):
                     return -1
@@ -128,7 +127,7 @@ export default class ViewTasks extends Component {
                         </div>
                         <div className="flex-row">
                             <div className='menu-box' onClick={this.toggleMenu} >
-                                <i class="fa fa-bars priority-arrow"></i>
+                                <i className="fa fa-bars priority-arrow"></i>
                             </div>
                             <Menu
                                 displayMenu={this.state.displayMenu}
@@ -152,8 +151,8 @@ export default class ViewTasks extends Component {
                             </Modal>
                         </div>
                         <div className='stats-container'>
-                            <StatsOpen label='Other Opens:' tasks={this.state.createdTasks} />
                             <StatsOpen label='My Opens:' tasks={this.state.assignedTasks} />
+                            <StatsOpen label='Other Opens:' tasks={this.state.createdTasks} />
                         </div>
                     </div>
                     <div className='task-lists-container flex-row'>
