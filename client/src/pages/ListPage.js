@@ -90,13 +90,13 @@ export default class ViewTasks extends Component {
     sortTasks(tasks) {
         return tasks.sort((task1, task2) => {
             switch (true) {
-                case (task1.status === 'Open'):
-                    return -1
-                case (task2.status === 'Open'):
-                    return 1
-                case (task1.status === 'In Progress' && task2.status === 'Closed'):
+                case (task1.status === 'In Progress'):
                     return -1
                 case (task2.status === 'In Progress'):
+                    return 1
+                case (task1.status === 'Open' && task2.status === 'Closed'):
+                    return -1
+                case (task2.status === 'Open'):
                     return -1
                 default:
                     return 0
