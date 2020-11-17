@@ -91,7 +91,9 @@ export default class Signup extends Component {
                                 value={organization_id}
                                 onChange={this.handleChange}
                             />
-                            <button>Sign Up</button>
+                            <button className='sign-in-up-button'>
+                                Sign Up
+                            </button>
                             {this.state.formError ? <p>Login Error</p> : <p></p>}
                         </form>
                     </div>

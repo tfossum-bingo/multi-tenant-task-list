@@ -26,7 +26,7 @@ export default class Task extends Component {
         const { description, summary, status, priority, assignee_id } = task
         return (
             <div className="task-card">
-                <div className='task-title'>
+                <div className='task-summary'>
                     {summary}
                 </div >
                 <div className='task-description'>
@@ -39,7 +39,7 @@ export default class Task extends Component {
                     {status}
                 </div>
                 <div className='task-assignee'>
-                    {assignee_id.name}
+                    Assigned: {assignee_id.name}
                 </div>
                 <div className='task-id'>
                     {task._id}

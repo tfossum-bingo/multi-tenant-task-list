@@ -42,7 +42,7 @@ export default class SignIn extends Component {
         <WelcomeHeader/>
         <div className="sign-in-container">
           <div className='sign-in-form'>
-            <form className="flex-column" onSubmit={this.handleSubmit}>
+            <form className="flex-column sign-in-form" onSubmit={this.handleSubmit}>
               <TextInput
                 placeholder="Email"
                 name="email"
@@ -57,8 +57,10 @@ export default class SignIn extends Component {
                 value={password}
                 onChange={this.handleChange}
               />
-              <button>Sign In</button>
-              {this.state.formError ? <p>Login Error</p> : <p></p>}
+              <button className='sign-in-up-button'>
+                Sign In
+              </button>
+              {this.state.formError ? <p>Login Error</p> : null}
             </form>
           </div>
           <div className='sign-up-link-container'>
