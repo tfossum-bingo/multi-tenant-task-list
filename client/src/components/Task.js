@@ -1,6 +1,10 @@
 import { React, Component } from 'react'
 import Modal from './modals/Modal'
 import TaskForm from './TaskForm'
+import TaskPriority from './TaskPriority'
+
+
+import '../styles/App.css'
 import '../styles/ListPage.css'
 
 export default class Task extends Component {
@@ -33,7 +37,7 @@ export default class Task extends Component {
                     {description}
                 </div>
                 <div className="task-priority">
-                    {priority}
+                    <TaskPriority priority={priority}/>
                 </div>
                 <div className='task-status'>
                     {status}

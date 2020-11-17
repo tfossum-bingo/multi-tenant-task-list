@@ -90,14 +90,16 @@ export default class ViewTasks extends Component {
                         <div>
                             <h1>Traxer</h1>
                         </div>
-                        <div>
-                            <h4>{this.state.user.name}</h4>
-                        </div>
-                        <div>
-                            <Logout></Logout>
-                        </div>
-                        <div className='menu-box' >
-                            <i class="fa fa-bars"></i>
+                        <div className="flex-row">
+                            <div className='menu-box' >
+                                <i class="fa fa-bars"></i>
+                            </div>
+                            <div>
+                                <h4>{this.state.user.name}</h4>
+                            </div>
+                            <div>
+                                <Logout></Logout>
+                            </div>
                         </div>
                     </div>
                     <div className="create-task">

@@ -11,11 +11,13 @@ body {
 
 
 .header {
-    height: 100px;
-    background-color: lightslategray;
-    background-color: rgba(63, 59, 59, 0.95);
     display: flex;
+    flex-direction: row;
+    height: 100px;
     width: 100%;
+    justify-content: space-between ;
+    /* background-color: lightslategray; */
+    background-color: rgba(63, 59, 59, 0.95);
     color: white;
 }
 
@@ -50,7 +52,7 @@ body {
 .task-card {
     display: grid;
     grid-template-rows: 50px 50px 1fr 1fr 1fr 1fr;
-    grid-template-columns: 75px 1fr 1fr;
+    grid-template-columns: 95px 1fr 1fr;
     border: black solid 2px;
     border-radius: 7px;
     margin-top: 10px; 
@@ -73,9 +75,9 @@ body {
 .task-priority {
     grid-row: 2/4;
     grid-column: 1/2;
-    padding: .4em;
+    padding: 1em .4em .4em .4em;
     text-align: center;
-
+    color: black;
 }
 
 .task-status {
@@ -109,4 +111,19 @@ body {
     grid-column: 3/4;
     padding-top: 10px;
     font-size: .5em;
+}
+
+.priority-arrow {
+    font-size: 3em;
+}
+
+.priority-high {
+    color: green;
+}
+
+.priority-medium {
+    color: goldenrod;
+}
+.priority-low {
+    color: steelblue;
 }
