@@ -1,5 +1,15 @@
 const { Organization, User } = require('../db/schema')
 
+const getOrganizations = async (request, response) => {
+    console.log('HIT getOrganizations')
+    try {
+        const organizations = await Organization.find()
+        return response.status(200).json({organizations: organizations})
+    } catch(error) {
+        return response.status(500).json({error: error.message})
+    }
+}
+
 const getOrganization = async (request, response) => {
     console.log('HIT getOrganization')
     try {
@@ -12,30 +22,6 @@ const getOrganization = async (request, response) => {
     } catch(error) {
         return response.status(500).send(error.message)
     }
-}
-
-const getOrganizations = async (request, response) => {
-    console.log('HIT getOrganizations')
-    try {
-        const organizations = await Organization.find()
-        return response.status(200).json({organizations: organizations})
-    } catch(error) {
-        return response.status(500).json({error: error.message})
-    }
-}
-
-const getOrganizationUsers = async (request, response) => {
-    console.log("HIT getOrganizationUsers")
-    try {   
-        //At this step I'd like to confirm the requesting user is of the requested organization, or in some way scope the request.
-        const users = await User.find({organization_id: request.params.id})
-        if(users){
-            return response.status(200).json({users: users})
-        }
-        return response.status(404).send('No users found for the requested organization.')
-    } catch(error) {
-        return response.status(500).send(error.message)
-    } 
 }
 
 const createOrganization = async (request, response) => {
@@ -82,6 +68,19 @@ const deleteOrganization = async (request, response) => {
     }
 }
 
+const getOrganizationUsers = async (request, response) => {
+    console.log("HIT getOrganizationUsers")
+    try {   
+        //At this step I'd like to confirm the requesting user is of the requested organization, or in some way scope the request.
+        const users = await User.find({organization_id: request.params.id})
+        if(users){
+            return response.status(200).json({users: users})
+        }
+        return response.status(404).send('No users found for the requested organization.')
+    } catch(error) {
+        return response.status(500).send(error.message)
+    } 
+}
 
 module.exports = {
     getOrganizations,

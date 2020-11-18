@@ -29,8 +29,22 @@ export default class TaskForm extends Component {
         )
     }
 
+    componentDidMount() {
+        this.setStateFromProps(this.props)
+    }
+
     handleChange = ({ target }) => {
         this.setState({ [target.name]: target.value })
+    }
+
+    handleDelete = async (e) => {
+        e.preventDefault()
+        try {
+            await __DeleteTask(this.state._id)
+            this.props.history.push('/list')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     handleSubmit = async (e) => {
@@ -57,20 +71,6 @@ export default class TaskForm extends Component {
         } catch (error) {
             console.log(error)
         }
-    }
-
-    handleDelete = async (e) => {
-        e.preventDefault()
-        try {
-            await __DeleteTask(this.state._id)
-            this.props.history.push('/list')
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    componentDidMount() {
-        this.setStateFromProps(this.props)
     }
 
     saveButton() {

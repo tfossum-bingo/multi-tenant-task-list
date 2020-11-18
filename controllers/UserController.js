@@ -5,6 +5,7 @@ const {
     generatePassword
 } = require('../middleware/PasswordHandler')
 
+
 const getUsers = async (req, res) => {
     console.log("HIT getUsers")
     try {
@@ -15,6 +16,24 @@ const getUsers = async (req, res) => {
         return res.status(200).json({ users: users })
     } catch (error) {
         return res.status(500).json({ error: error.message })
+    }
+}
+
+const getUserTasks = async (request, response) => {
+    console.log('HIT getUserTasks', request.params.id)
+
+    try {
+        const tasks = await Task.find({ $or: [{ creator_id: request.params.id },
+             { assignee_id: request.params.id }] }).populate([{
+                 model: 'user',
+                 path: 'assignee_id'
+             }])
+        if (tasks) {
+            return response.status(200).json({ tasks: tasks })
+        }
+        return response.status(404).send('No tasks found for a user with that ID.')
+    } catch (error) {
+        return response.status(500).send(error.message)
     }
 }
 
@@ -32,24 +51,6 @@ const getUser = async (request, response) => {
             return response.status(200).json({ user: user })
         }
         return response.status(404).send('No user found with that ID.')
-    } catch (error) {
-        return response.status(500).send(error.message)
-    }
-}
-
-const getUserTasks = async (request, response) => {
-    console.log('HIT getUserTasks', request.params.id)
-
-    try {
-        const tasks = await Task.find({ $or: [{ creator_id: request.params.id },
-             { assignee_id: request.params.id }] }).populate([{
-                 model: 'user',
-                 path: 'assignee_id'
-             }])
-        if (tasks) {
-            return response.status(200).json({ tasks: tasks })
-        }
-        return response.status(404).send('No tasks found for a user with that ID.')
     } catch (error) {
         return response.status(500).send(error.message)
     }

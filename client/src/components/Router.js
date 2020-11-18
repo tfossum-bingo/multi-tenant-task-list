@@ -18,11 +18,6 @@ class Router extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ pageLoading: false })
-    this.checkLoggedIn()
-  }
-
   async checkLoggedIn() {
     const token = localStorage.getItem("token")
     if (token) {
@@ -31,6 +26,11 @@ class Router extends Component {
         this.props.history.push('/list')
       }
     }
+  }
+
+  componentDidMount() {
+    this.setState({ pageLoading: false })
+    this.checkLoggedIn()
   }
 
   toggleAuthenticated = (value, user, done) => {

@@ -67,11 +67,6 @@ export default class SignIn extends Component {
               Sign Up
           </NavLink>
           </div>
-          <div className='sign-up-link-container'>
-            <NavLink to="/organization_admin">
-              Organization Admin
-          </NavLink>
-          </div>
         </div>
       </div>
     )
