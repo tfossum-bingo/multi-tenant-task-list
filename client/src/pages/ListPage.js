@@ -42,7 +42,7 @@ export default class ViewTasks extends Component {
 
     displayNoTasks() {
         const { assignedTasks, createdTasks } = this.state
-        if ((assignedTasks === null || assignedTasks.length === 0) || (createdTasks === null || createdTasks.length === 0)) {
+        if ((assignedTasks === null || assignedTasks.length === 0) && (createdTasks === null || createdTasks.length === 0)) {
             return true
         }
         return false
