@@ -22,7 +22,12 @@ const getUser = async (request, response) => {
     console.log('HIT getUser')
     try {
         const { id } = request.params
-        const user = await User.findById(id)
+        const user = await User.findById(id).populate([
+            {
+                model: 'organization',
+                path: 'organization_id'
+            }
+        ])
         if (user) {
             return response.status(200).json({ user: user })
         }

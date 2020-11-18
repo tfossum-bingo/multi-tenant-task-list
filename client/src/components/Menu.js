@@ -2,7 +2,7 @@ import React from 'react'
 import LogOut from './LogOut'
 
 export default (props) => {
-    const { name, email } = props.user
+    const { name, email, organization_id } = props.user
 
     if (props.displayMenu) {
         return (
@@ -19,6 +19,9 @@ export default (props) => {
                 </div>
                 <div>
                     email: {email}
+                </div>
+                <div>
+                    org: {organization_id.name}
                 </div>
                 <div className='menu-logout'>
                     <LogOut></LogOut>
