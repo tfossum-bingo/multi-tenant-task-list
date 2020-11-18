@@ -61,7 +61,7 @@ export default class ViewTasks extends Component {
 
     getOrganizationUsers = async () => {
         if (this.state.user) {
-            const orgUsers = await __GetUsers(this.state.user.organization_id)
+            const orgUsers = await __GetUsers(this.state.user.organization_id._id)
             const selectOptions = orgUsers.users.map((user, index) => {
                 return [user._id, user.name]
             })
