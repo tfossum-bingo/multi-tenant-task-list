@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/multitenantTasksDatabase',
+    .connect(process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : 
+     'mongodb://127.0.0.1:27017/multitenantTasksDatabase',
         {
             useUnifiedTopology: true,
             useNewUrlParser: true
