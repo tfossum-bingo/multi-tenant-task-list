@@ -9,6 +9,9 @@
 ### Overview
 This product (Traxer) is a multi-tenant task list tool.With an emphasis on simplicity, users can create and assign tasks to their colleagues within a clean, simple, web interface. 
 
+A demo version of Traxer can be found here:
+https://traxer-01.herokuapp.com/
+
 ***
 
 ### Technologies
@@ -49,18 +52,24 @@ const PORT = process.env.PORT || 3001
 ### Front-end
 The React front-end is configured to listen on port:3000 by default. Changin this is possible, but intricate. Refer to the most recent React documnentation for instructions if necessary
 ***
-### Entity Relationships
+## Entity Relationships
 ![ER Diagram](/ER_Diagram.png)
 ***
-### Component Diagram
+## Component Diagram
 ![Component Diagram](/Component_Diagram.png)
 ***
 
-### Wireframes
+## Wireframes
+**Landing Page**
+![Landing Page](/Traxer_SignIn.png)
+**Sign Up Page**
+![SignUp Page](/Traxer_SignUp.png)
+**Main Page**
 ![Main Page](/Traxer_Main.png)
-![Welcome Page](/wf_Welcome.png)
-![Main Page](/wf_MainPage.png)
-![Task Details](/wf_Task_Details.png)
+**Menu**
+![Profile Menu](/Traxer_Menu.png)
+**Task Edit**
+![Task Edit](/Traxer_Edit.png)
 ***
 
 ### Trello Board
