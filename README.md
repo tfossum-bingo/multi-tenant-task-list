@@ -60,16 +60,21 @@ The React front-end is configured to listen on port:3000 by default. Changin thi
 ***
 
 ## Wireframes
+
 **Landing Page**
 ![Landing Page](/Traxer_SignIn.png)
+
 **Sign Up Page**
 ![SignUp Page](/Traxer_SignUp.png)
+
 **Main Page**
 ![Main Page](/Traxer_Main.png)
+
 **Menu**
 ![Profile Menu](/Traxer_Menu.png)
+
 **Task Edit**
-![Task Edit](/Traxer_Edit.png)
+![Task Edit](/Traxer_TaskEdit.png)
 ***
 
 ### Trello Board
