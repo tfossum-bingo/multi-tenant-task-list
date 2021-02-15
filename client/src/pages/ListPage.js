@@ -49,9 +49,7 @@ export default class ViewTasks extends Component {
     }
 
     findAssignedTasks = (tasks) => {
-        console.log("findAssignedTasks: ", tasks)
         const assignedTasks = tasks.filter(task => task.assignee_id._id === this.state.user._id)
-        console.log("assignedTasks: ", assignedTasks)
         return assignedTasks
     }
 
