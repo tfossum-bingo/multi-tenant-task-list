@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import Menu from '../components/Menu'
 import Modal from '../components/modals/Modal'
@@ -7,15 +7,15 @@ import TaskForm from '../components/TaskForm'
 import TaskList from '../components/TaskList'
 import StatsOpen from '../components/StatsOpen'
 
-import { __GetTasks } from '../services/TaskService'
-import { __GetProfile } from '../services/UserService'
-import { __GetUsers } from '../services/OrganizationService'
+import {__GetTasks} from '../services/TaskService'
+import {__GetProfile} from '../services/UserService'
+import {__GetUsers} from '../services/OrganizationService'
 
 import '../styles/App.css'
 import '../styles/ListPage.css'
 
 
-export default class ViewTasks extends Component {
+export default class ListPage extends Component {
     constructor(props) {
         super()
         this.state = {
@@ -29,19 +29,24 @@ export default class ViewTasks extends Component {
     }
 
     componentDidMount() {
-        const localStorUserID = localStorage.getItem("userId")
+        const localStorageUserID = localStorage.getItem("userId")
         let userID = ''
-        if (localStorUserID) {
-            userID = localStorUserID
+        if (localStorageUserID) {
+            userID = localStorageUserID
         } else {
             userID = this.props.user._id
         }
+
+        if (userID !== null && userID !== undefined && this.state.user === null) {
+            this.getProfile(userID)
+        }
+
         this.getProfile(userID)
         this.getTasks()
     }
 
     displayNoTasks() {
-        const { assignedTasks, createdTasks } = this.state
+        const {assignedTasks, createdTasks} = this.state
         if ((assignedTasks === null || assignedTasks.length === 0) && (createdTasks === null || createdTasks.length === 0)) {
             return true
         }
@@ -64,13 +69,13 @@ export default class ViewTasks extends Component {
             const selectOptions = orgUsers.users.map((user, index) => {
                 return [user._id, user.name]
             })
-            this.setState({ orgUsers: selectOptions })
+            this.setState({orgUsers: selectOptions})
         }
     }
 
     getProfile = async (userId) => {
         const fetchedProfile = await __GetProfile(userId)
-        this.setState({ user: fetchedProfile.user })
+        this.setState({user: fetchedProfile.user})
         this.getOrganizationUsers()
     }
 
@@ -83,7 +88,7 @@ export default class ViewTasks extends Component {
         assignedTasks = this.sortTasks(assignedTasks)
         createdTasks = this.sortTasks(createdTasks)
 
-        this.setState({ assignedTasks: assignedTasks, createdTasks: createdTasks })
+        this.setState({assignedTasks: assignedTasks, createdTasks: createdTasks})
     }
 
     sortTasks(tasks) {
@@ -105,17 +110,17 @@ export default class ViewTasks extends Component {
     }
 
     toggleModal = (e) => {
-        this.setState({ displayModal: !this.state.displayModal })
+        this.setState({displayModal: !this.state.displayModal})
     }
 
     toggleMenu = (e) => {
-        this.setState({ displayMenu: !this.state.displayMenu })
+        this.setState({displayMenu: !this.state.displayMenu})
     }
 
     render() {
-        const { assignedTasks, createdTasks } = this.state
-        if (assignedTasks !== null || createdTasks !== null) {
-            return (
+        const {assignedTasks, createdTasks} = this.state
+        return (assignedTasks !== null || createdTasks !== null) ?
+            (
                 <div className="task-page">
                     <div className="header">
                         <div className='logo-box'>
@@ -125,23 +130,23 @@ export default class ViewTasks extends Component {
                             </span>
                         </div>
                         <div className="flex-row">
-                            <div className='menu-box' onClick={this.toggleMenu} >
+                            <div className='menu-box' onClick={this.toggleMenu}>
                                 <i className="fa fa-bars priority-arrow"></i>
                             </div>
                             <Menu
                                 displayMenu={this.state.displayMenu}
                                 user={this.state.user}
-                                onClick={this.toggleMenu} />
+                                onClick={this.toggleMenu}/>
                         </div>
                     </div>
                     <div className="create-task">
                         <div className="create-task-button">
                             <button
-                                onClick={e => this.toggleModal()} >
+                                onClick={e => this.toggleModal()}>
                                 New Task
                             </button>
                             <Modal show={this.state.displayModal}
-                                onClick={this.toggleModal}>
+                                   onClick={this.toggleModal}>
                                 <TaskForm
                                     onClick={this.toggleModal}
                                     selectOptions={this.state.orgUsers}
@@ -150,8 +155,8 @@ export default class ViewTasks extends Component {
                             </Modal>
                         </div>
                         <div className='stats-container'>
-                            <StatsOpen label='My Opens:' tasks={this.state.assignedTasks} />
-                            <StatsOpen label='Other Opens:' tasks={this.state.createdTasks} />
+                            <StatsOpen label='My Opens:' tasks={this.state.assignedTasks}/>
+                            <StatsOpen label='Other Opens:' tasks={this.state.createdTasks}/>
                         </div>
                     </div>
                     <div className='task-lists-container flex-row'>
@@ -167,12 +172,12 @@ export default class ViewTasks extends Component {
                             orgUsers={this.state.orgUsers}
                             {...this.props}
                         />
-                        <NoTasks displayNoTasks={this.displayNoTasks()} />
+                        <NoTasks displayNoTasks={this.displayNoTasks()}/>
                     </div>
 
                 </div>
+            ) : (
+                <h3>Loading...</h3>
             )
-        }
-        return <h3>Loading...</h3>
     }
 }
