@@ -5,7 +5,6 @@ const {
     generatePassword
 } = require('../middleware/PasswordHandler')
 
-
 const getUsers = async (req, res) => {
     console.log("HIT getUsers")
     try {
