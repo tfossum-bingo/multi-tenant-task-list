@@ -1,5 +1,5 @@
-# multi-tenant-task-list
-
+# Traxer a multi-tenant task list
+![Traxer Tech Logos](./Traxer_Tech_Logos.png)
 ## November 9, 2020
 
 ### By: Ted Fossum
@@ -7,7 +7,7 @@
 [LinkedIn](https://www.linkedin.com/in/tedfossum/)
 ***
 ### Overview
-This product (Traxer) is a multi-tenant task list tool.With an emphasis on simplicity, users can create and assign tasks to their colleagues within a clean, simple, web interface. 
+This product (Traxer) is a multi-tenant task list tool. With an emphasis on simplicity, users can create and assign tasks to their colleagues within a clean, simple, web interface. 
 
 A demo version of Traxer can be found here:
 https://traxer-01.herokuapp.com/

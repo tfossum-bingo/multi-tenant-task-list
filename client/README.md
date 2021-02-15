@@ -1,5 +1,4 @@
 # Getting Started with Create React App
-![Traxer Tech Logos](./Traxer_Tech_Logos.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
