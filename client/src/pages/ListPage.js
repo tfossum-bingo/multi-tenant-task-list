@@ -49,13 +49,14 @@ export default class ViewTasks extends Component {
     }
 
     findAssignedTasks = (tasks) => {
-
-        const assignedTasks = tasks.filter(task => task.assignee_id === this.state.user._id)
+        console.log("findAssignedTasks: ", tasks)
+        const assignedTasks = tasks.filter(task => task.assignee_id._id === this.state.user._id)
+        console.log("assignedTasks: ", assignedTasks)
         return assignedTasks
     }
 
     findCreatedTasks = (tasks) => {
-        const createdTasks = tasks.filter(task => (task.assignee_id !== this.state.user._id && task.creator_id === this.state.user._id))
+        const createdTasks = tasks.filter(task => (task.assignee_id._id !== this.state.user._id && task.creator_id === this.state.user._id))
         return createdTasks
     }
 
