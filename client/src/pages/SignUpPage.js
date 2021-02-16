@@ -15,6 +15,7 @@ export default class Signup extends Component {
             name: '',
             email: '',
             password: '',
+            password2: '',
             organization_id: '',
             organizations: []
         }
@@ -43,15 +44,22 @@ export default class Signup extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
+        if (this.state.password === this.state.password2) {
+
         try {
             await __RegisterUser(this.state)
             this.props.history.push('/')
         } catch (error) {
             console.log(error)
         }
+        } else {
+            this.setState( {
+                formError: true
+            })
+        }
     }
     render() {
-        const { name, password, email, organization_id } = this.state
+        const { name, password, password2, email, organization_id } = this.state
         return (
             <div>
                 <WelcomeHeader />
@@ -79,6 +87,13 @@ export default class Signup extends Component {
                                 value={password}
                                 onChange={this.handleChange}
                             />
+                            <TextInput
+                                placeholder="Confirm Password"
+                                type="password"
+                                name="password2"
+                                value={password2}
+                                onChange={this.handleChange}
+                            />
                             <SelectOption
                                 selectOptions={this.state.organizations}
                                 name="organization_id"
@@ -88,7 +103,7 @@ export default class Signup extends Component {
                             <button className='sign-in-up-button'>
                                 Sign Up
                             </button>
-                            {this.state.formError ? <p>Login Error</p> : <p></p>}
+                            {this.state.formError ? <p className='login-error'>Sign-Up Error</p> : null}
                         </form>
                     </div>
                     <div className='sign-up-link-container'>

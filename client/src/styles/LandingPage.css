@@ -37,3 +37,7 @@ body {
 .sign-in-up-button {
     margin: 25px;
 }
+
+p.login-error {
+    color: lightgray;
+}

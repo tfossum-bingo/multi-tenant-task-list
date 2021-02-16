@@ -59,7 +59,7 @@ export default class SignIn extends Component {
               <button className='sign-in-up-button'>
                 Sign In
               </button>
-              {this.state.formError ? <p>Login Error</p> : null}
+              {this.state.formError ? <p className='login-error'>Login Error</p> : null}
             </form>
           </div>
           <div className='sign-up-link-container'>

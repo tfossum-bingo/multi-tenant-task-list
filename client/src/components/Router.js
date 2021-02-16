@@ -7,7 +7,7 @@ import SignUpPage from '../pages/SignUpPage'
 import OrganizationPage from '../pages/OrganizationPage'
 import ProtectedRoute from './ProtectedRoute'
 
-import { __CheckSession, __GetProfile } from '../services/UserService'
+import { __CheckSession } from '../services/UserService'
 
 class Router extends Component {
   constructor() {

@@ -4,6 +4,7 @@ require('dotenv').config()
 const secretKey = process.env.SECRET_KEY
 
 const getToken = (request, response, next) => {
+    console.log('req.header.auth: ', request.headers['authorization'])
     const token = request.headers['authorization'].split(' ')[1]
     response.locals.token = token
     next()
